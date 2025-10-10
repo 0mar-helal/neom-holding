@@ -1,0 +1,252 @@
+{
+  "site": {
+    "title": "Neom Holding | شركة نيوم القابضة",
+    "description": "A world‑class Saudi–Syrian holding company investing in Syria's future.",
+    "badge": "Private Saudi–Syrian Holding Company",
+    "companyName": "Neom Holding",
+    "companyNameShort": "Neom",
+    "logoAlt": "Neom Holding Logo"
+  },
+  "nav": {
+    "about": "About",
+    "strategy": "Strategy",
+    "chairman": "Chairman",
+    "board": "Board",
+    "sectors": "Sectors",
+    "governance": "Governance",
+    "esg": "ESG",
+    "investors": "Investors",
+    "news": "News",
+    "compliance": "Compliance",
+    "supply": "Supply Chain",
+    "blog": "Blog",
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "contact": "Contact",
+    "navigation": "Navigation",
+    "languageSwitch": "Language switch"
+  },
+  "hero": {
+    "title": "Investing in Syria's Future — Global Vision, Robust Governance, and Long‑Term Sustainability",
+    "subtitle": "A focused portfolio across agriculture, industry, infrastructure, tourism, contracting, and international trade — with governance and ESG standards on par with leading global companies.",
+    "portfolioTitle": "Portfolio Snapshot",
+    "homeId": "home-en",
+    "kpis": {
+      "subsidiaries": "Subsidiaries",
+      "pillars": "Investment Pillars",
+      "jobs": "Direct & Indirect Jobs",
+      "compliance": "Compliance Commitment"
+    },
+    "kpisAlt": "At-a-glance KPIs",
+    "portfolio": {
+      "smartAgriculture": "Smart Agriculture & Food",
+      "infrastructure": "Infrastructure & Roads",
+      "industry": "Industry & Materials",
+      "contracting": "Contracting & Development",
+      "tourism": "Tourism & Hospitality",
+      "internationalTrade": "International Trade"
+    },
+    "companies": {
+      "tharwa": "Tharwa",
+      "bunya": "Bunya",
+      "azm": "Azm",
+      "albunyan": "Al-Bunyan",
+      "jathb": "Jathb",
+      "nufudh": "Nufudh"
+    }
+  },
+  "sections": {
+    "about": {
+      "title": "About Us",
+      "content": "Neom Holding is a world‑class Saudi–Syrian holding company accelerating Syria's reconstruction through high‑impact investments, international partnerships, technology localization, and human capital development."
+    },
+    "strategy": {
+      "title": "Strategy",
+      "investment": {
+        "title": "Investment Pillars",
+        "items": [
+          "High‑impact, fast‑enablement projects",
+          "Financial & operating partnerships",
+          "Digital solutions & smart supply chains",
+          "Local content & value‑addition"
+        ]
+      },
+      "governance": {
+        "title": "Risk & Governance",
+        "items": [
+          "Unified risk frameworks",
+          "Regulatory compliance & independent audit",
+          "Business continuity"
+        ]
+      }
+    },
+    "chairman": {
+      "title": "Chairman's Message",
+      "name": "H.E. Sheikh Thamer bin Fawaz Al‑Ghobein",
+      "position": "Chairman of the Board — Saudi",
+      "message": "Beyond investment, our purpose is to rebuild a nation and uplift a people — reshaping the economic landscape on modern foundations of technology, efficiency, and governance.",
+      "avatar": "T"
+    },
+    "board": {
+      "title": "Board of Directors",
+      "chairman": "Chairman",
+      "nationality": "Nationality",
+      "fullName": "Full Name",
+      "members": [
+        {
+          "role": "Chairman",
+          "name": "H.E. Sheikh Thamer bin Fawaz Al‑Ghobein",
+          "nationality": "Saudi"
+        },
+        {
+          "role": "Board Member",
+          "name": "Enad Mohammed Al‑Owied",
+          "nationality": "Canadian"
+        },
+        {
+          "role": "Board Member",
+          "name": "Hussain Mohammed Al‑Hammoud",
+          "nationality": "Syrian"
+        },
+        {
+          "role": "Board Member",
+          "name": "Thi'ab Aboud Al‑Dhiab",
+          "nationality": "Syrian"
+        }
+      ]
+    },
+    "sectors": {
+      "title": "Sectors & Subsidiaries",
+      "subsidiaries": [
+        {
+          "name": "Jathb Tourism",
+          "description": "Hospitality, transport, events, and destination development."
+        },
+        {
+          "name": "Tharwa Agriculture",
+          "description": "Smart farming, inputs, water management, food supply chains."
+        },
+        {
+          "name": "Bunya Infrastructure",
+          "description": "Roads & bridges, utilities, sanitation."
+        },
+        {
+          "name": "Azm Industrial",
+          "description": "Factory development, raw materials, industrial automation."
+        },
+        {
+          "name": "Al‑Bunyan Contracting",
+          "description": "Residential, commercial, education, and healthcare projects."
+        },
+        {
+          "name": "Nufudh Intl. Trade",
+          "description": "Foodstuffs, agricultural products, metals, petrochemicals, raw materials."
+        }
+      ]
+    },
+    "governance": {
+      "title": "Corporate Governance"
+    },
+    "esg": {
+      "title": "ESG",
+      "environment": {
+        "title": "Environment",
+        "description": "Energy efficiency, water stewardship, emissions reduction, waste recycling."
+      },
+      "social": {
+        "title": "Social",
+        "description": "Youth empowerment, vocational training, health & safety."
+      },
+      "governance": {
+        "title": "Governance",
+        "description": "Regular disclosures, independent audit, compliance."
+      }
+    },
+    "investors": {
+      "title": "Investor Relations"
+    },
+    "news": {
+      "title": "News & Press"
+    },
+    "blog": {
+      "title": "Blog",
+      "subtitle": "Insights and updates from our team",
+      "published": "Published",
+      "readMore": "Read More"
+    },
+    "contact": {
+      "title": "Contact Us",
+      "office": "Head Office",
+      "country": "Syrian Arab Republic",
+      "address": "Damascus – Financial District",
+      "phone": "+ (0) XXX XXX XXXX",
+      "email": "Email",
+      "name": "Name",
+      "subject": "Subject",
+      "message": "Message",
+      "send": "Send Message",
+      "sending": "Sending...",
+      "help": "We'll get back to you within 24 hours",
+      "placeholders": {
+        "name": "Your full name",
+        "email": "your@email.com",
+        "subject": "How can we help?",
+        "message": "Tell us about your inquiry..."
+      },
+      "errors": {
+        "required": "All fields are required",
+        "email": "Please enter a valid email address"
+      },
+      "success": "Message sent successfully!",
+      "error": "Failed to send message. Please try again.",
+      "toast": {
+        "success": "Message sent successfully! We'll get back to you soon.",
+        "error": "An error occurred while sending the message. Please try again."
+      }
+    },
+    "privacy": {
+      "title": "Privacy Policy",
+      "content": "We are committed to protecting your privacy and personal information.",
+      "items": [
+        "We collect only necessary information for business purposes",
+        "Your data is never shared with third parties without consent",
+        "We use industry-standard security measures to protect your information",
+        "You can request data deletion at any time"
+      ]
+    },
+    "terms": {
+      "title": "Terms & Conditions",
+      "content": "By using our services, you agree to the following terms:",
+      "items": [
+        "All content is for informational purposes only",
+        "We reserve the right to update these terms at any time",
+        "Use of our services is subject to applicable laws",
+        "We are not liable for any indirect damages"
+      ]
+    },
+    "compliance": {
+      "title": "Compliance Methodology",
+      "content": "Our compliance framework ensures adherence to international standards:",
+      "items": [
+        "Regular compliance audits and assessments",
+        "Employee training and certification programs",
+        "Documentation and reporting requirements",
+        "Continuous improvement processes"
+      ]
+    },
+    "supply": {
+      "title": "Supply Chain & Responsibility",
+      "content": "We maintain responsible supply chain practices:",
+      "items": [
+        "Ethical sourcing and procurement policies",
+        "Supplier diversity and inclusion programs",
+        "Environmental impact assessments",
+        "Community engagement and support"
+      ]
+    }
+  },
+  "footer": {
+    "copyright": "© {year} Neom Holding. All rights reserved.",
+    "allRightsReserved": "All rights reserved."
+  }
+}
