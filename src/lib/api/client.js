@@ -12,7 +12,9 @@ const apiClient = axios.create({
 apiClient.interceptors.request.use(
   (config) => {
     // Add any request modifications here
-    console.log(`Making API request to: ${config.url}`);
+    console.log(
+      `Making API request to: ${config.url} (timeout: ${config.timeout}ms)`
+    );
     return config;
   },
   (error) => {
@@ -39,6 +41,13 @@ apiClient.interceptors.response.use(
     } else if (error.request) {
       // Request was made but no response received
       console.error("No response received:", error.request);
+    } else if (
+      error.code === "ECONNABORTED" &&
+      error.message.includes("timeout")
+    ) {
+      // Timeout error
+      console.error("Request timeout: The server took too long to respond");
+      console.error("Timeout duration:", REQUEST_TIMEOUT, "ms");
     } else {
       // Something else happened
       console.error("Error setting up request:", error.message);

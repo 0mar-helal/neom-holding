@@ -59,3 +59,18 @@ html {
     transform: translateX(0);
   }
 }
+
+/* Ensure default list styling is visible */
+ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+}
+
+ol {
+  list-style-type: decimal;
+  padding-left: 1.5rem;
+}
+
+li {
+  display: list-item;
+}

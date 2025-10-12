@@ -3,13 +3,17 @@ import {
   settingsService,
   menuService,
   sectionsService,
-  kpisService,
+  heroService,
+  aboutService,
+  strategyBlocksService,
   companiesService,
   boardService,
+  speechesService,
   govService,
   esgService,
   newsService,
   postsService,
+  pagesService,
   legalService,
   contactService,
   searchService,
@@ -97,11 +101,11 @@ export const useSections = (lang = "en") => {
   };
 };
 
-// KPIs hooks
-export const useKPIs = (lang = "en") => {
+// Hero hooks
+export const useHero = (lang = "en") => {
   const { data, error, isLoading, mutate } = useSWR(
-    `kpis-${lang}`,
-    () => kpisService.getAll(lang),
+    `hero-${lang}`,
+    () => heroService.getAll(lang),
     {
       revalidateOnFocus: false,
       revalidateOnReconnect: true,
@@ -110,7 +114,47 @@ export const useKPIs = (lang = "en") => {
   );
 
   return {
-    kpis: data,
+    hero: data,
+    isLoading,
+    isError: error,
+    mutate,
+  };
+};
+
+// About hooks
+export const useAbout = (lang = "en") => {
+  const { data, error, isLoading, mutate } = useSWR(
+    `about-${lang}`,
+    () => aboutService.getAll(lang),
+    {
+      revalidateOnFocus: false,
+      revalidateOnReconnect: true,
+      dedupingInterval: 300000, // 5 minutes
+    }
+  );
+
+  return {
+    about: data,
+    isLoading,
+    isError: error,
+    mutate,
+  };
+};
+
+// Strategy Blocks hooks
+export const useStrategyBlocks = (lang = "en") => {
+  const { data, error, isLoading, mutate } = useSWR(
+    `strategy-blocks-${lang}`,
+    () => strategyBlocksService.getAll(lang),
+    {
+      revalidateOnFocus: false,
+      revalidateOnReconnect: true,
+      dedupingInterval: 300000, // 5 minutes
+    }
+  );
+
+  return {
+    strategyBlocks: data,
     isLoading,
     isError: error,
     mutate,
@@ -151,6 +195,26 @@ export const useBoard = (lang = "en") => {
 
   return {
     board: data,
+    isLoading,
+    isError: error,
+    mutate,
+  };
+};
+
+// Speeches hooks
+export const useSpeeches = (lang = "en") => {
+  const { data, error, isLoading, mutate } = useSWR(
+    `speeches-${lang}`,
+    () => speechesService.getAll(lang),
+    {
+      revalidateOnFocus: false,
+      revalidateOnReconnect: true,
+      dedupingInterval: 300000, // 5 minutes
+    }
+  );
+
+  return {
+    speeches: data,
     isLoading,
     isError: error,
     mutate,
@@ -237,6 +301,26 @@ export const usePosts = (lang = "en") => {
   };
 };
 
+// Pages hooks
+export const usePages = (lang = "en") => {
+  const { data, error, isLoading, mutate } = useSWR(
+    `pages-${lang}`,
+    () => pagesService.getAll(lang),
+    {
+      revalidateOnFocus: false,
+      revalidateOnReconnect: true,
+      dedupingInterval: 300000, // 5 minutes
+    }
+  );
+
+  return {
+    pages: data,
+    isLoading,
+    isError: error,
+    mutate,
+  };
+};
+
 // Legal hooks
 export const useLegal = (lang = "en") => {
   const { data, error, isLoading, mutate } = useSWR(
@@ -300,27 +384,27 @@ export const useSearch = (query, options = {}) => {
 // Custom hook for multiple data sources
 export const useDashboardData = (lang = "en") => {
   const settings = useSettings(lang);
-  const kpis = useKPIs(lang);
+  const hero = useHero(lang);
   const companies = useCompanies(lang);
   const board = useBoard(lang);
   const esg = useESG(lang);
 
   const isLoading =
     settings.isLoading ||
-    kpis.isLoading ||
+    hero.isLoading ||
     companies.isLoading ||
     board.isLoading ||
     esg.isLoading;
   const isError =
     settings.isError ||
-    kpis.isError ||
+    hero.isError ||
     companies.isError ||
     board.isError ||
     esg.isError;
 
   return {
     settings: settings.settings,
-    kpis: kpis.kpis,
+    hero: hero.hero,
     companies: companies.companies,
     board: board.board,
     esg: esg.esg,
@@ -328,7 +412,7 @@ export const useDashboardData = (lang = "en") => {
     isError,
     mutate: {
       settings: settings.mutate,
-      kpis: kpis.mutate,
+      hero: hero.mutate,
       companies: companies.mutate,
       board: board.mutate,
       esg: esg.mutate,

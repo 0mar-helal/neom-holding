@@ -1,0 +1,149 @@
+/* Custom dropdown animations inspired by Dubizzle */
+@keyframes slideInFromTop {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Hover area improvements */
+.dropdown-container {
+  position: relative;
+}
+
+.dropdown-container::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  z-index: -1;
+}
+
+/* CSS-only dropdown hover effects */
+.group:hover .group-hover\:opacity-100 {
+  opacity: 1;
+}
+
+.group:hover .group-hover\:visible {
+  visibility: visible;
+}
+
+.group:hover .group-hover\:translate-y-0 {
+  transform: translateY(0);
+}
+
+.group:hover .group-hover\:rotate-180 {
+  transform: rotate(180deg);
+}
+
+@keyframes slideOutToTop {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Dropdown entrance animation */
+.dropdown-enter {
+  animation: slideInFromTop 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Dropdown exit animation */
+.dropdown-exit {
+  animation: slideOutToTop 0.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Hover effect for dropdown items */
+.dropdown-item-hover {
+  position: relative;
+  overflow: hidden;
+}
+
+.dropdown-item-hover::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(58, 191, 248, 0.1),
+    transparent
+  );
+  transition: left 0.5s;
+}
+
+.dropdown-item-hover:hover::before {
+  left: 100%;
+}
+
+/* Glow effect for active items */
+.active-glow {
+  box-shadow: 0 0 20px rgba(58, 191, 248, 0.3);
+}
+
+/* Smooth transitions for all interactive elements */
+.nav-button {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-button:hover {
+  transform: translateY(-1px);
+}
+
+/* Backdrop blur effect */
+.backdrop-blur-custom {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* Custom scrollbar for dropdown */
+.dropdown-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+
+.dropdown-scroll::-webkit-scrollbar-track {
+  background: rgba(30, 42, 68, 0.3);
+  border-radius: 2px;
+}
+
+.dropdown-scroll::-webkit-scrollbar-thumb {
+  background: rgba(58, 191, 248, 0.5);
+  border-radius: 2px;
+}
+
+.dropdown-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(58, 191, 248, 0.7);
+}

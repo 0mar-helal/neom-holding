@@ -24,7 +24,22 @@
     "terms": "Terms",
     "contact": "Contact",
     "navigation": "Navigation",
-    "languageSwitch": "Language switch"
+    "languageSwitch": "Language switch",
+    "dropdowns": {
+      "governance": {
+        "title": "Governance",
+        "subtitle": "Select the desired section"
+      },
+      "content": {
+        "title": "Content",
+        "subtitle": "Select the desired section"
+      },
+      "legal": {
+        "title": "Legal",
+        "subtitle": "Select the desired section"
+      },
+      "footer": "Click to go to section"
+    }
   },
   "hero": {
     "title": "Investing in Syria's Future — Global Vision, Robust Governance, and Long‑Term Sustainability",

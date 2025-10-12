@@ -1,14 +1,37 @@
 import apiClient from "./client";
 import { API_ENDPOINTS } from "./config";
 
+// Retry configuration
+const MAX_RETRIES = 2;
+const RETRY_DELAY = 1000; // 1 second
+
+// Helper function to delay execution
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
 // Generic API service functions
 export const apiService = {
-  // Generic GET request
-  get: async (endpoint, params = {}) => {
+  // Generic GET request with retry logic
+  get: async (endpoint, params = {}, retryCount = 0) => {
     try {
       const response = await apiClient.get(endpoint, { params });
       return response.data;
     } catch (error) {
+      // Handle timeout errors with retry logic
+      if (error.code === "ECONNABORTED" && error.message.includes("timeout")) {
+        if (retryCount < MAX_RETRIES) {
+          console.log(
+            `Timeout error for ${endpoint}, retrying... (${
+              retryCount + 1
+            }/${MAX_RETRIES})`
+          );
+          await delay(RETRY_DELAY * (retryCount + 1)); // Exponential backoff
+          return apiService.get(endpoint, params, retryCount + 1);
+        } else {
+          throw new Error(
+            `Request timeout: The server took too long to respond for ${endpoint} after ${MAX_RETRIES} retries. Please try again later.`
+          );
+        }
+      }
       throw new Error(
         `Failed to fetch data from ${endpoint}: ${error.message}`
       );
@@ -59,9 +82,18 @@ export const settingsService = {
   getAsObject: async (lang = "en") => {
     const response = await apiService.get(API_ENDPOINTS.SETTINGS, { lang });
     const settings = {};
-    response.results.forEach((setting) => {
-      settings[setting.key] = setting.value;
+
+    // Handle both array response and object with results property
+    const settingsArray = Array.isArray(response)
+      ? response
+      : response?.results || [];
+
+    settingsArray.forEach((setting) => {
+      if (setting && setting.key) {
+        settings[setting.key] = setting.value;
+      }
     });
+
     return settings;
   },
 };
@@ -78,10 +110,23 @@ export const sectionsService = {
     apiService.get(`${API_ENDPOINTS.SECTIONS}${id}/`, { lang }),
 };
 
-export const kpisService = {
-  getAll: (lang = "en") => apiService.get(API_ENDPOINTS.KPIS, { lang }),
+export const heroService = {
+  getAll: (lang = "en") => apiService.get(API_ENDPOINTS.HERO, { lang }),
   getById: (id, lang = "en") =>
-    apiService.get(`${API_ENDPOINTS.KPIS}${id}/`, { lang }),
+    apiService.get(`${API_ENDPOINTS.HERO}${id}/`, { lang }),
+};
+
+export const aboutService = {
+  getAll: (lang = "en") => apiService.get(API_ENDPOINTS.ABOUT, { lang }),
+  getById: (id, lang = "en") =>
+    apiService.get(`${API_ENDPOINTS.ABOUT}${id}/`, { lang }),
+};
+
+export const strategyBlocksService = {
+  getAll: (lang = "en") =>
+    apiService.get(API_ENDPOINTS.STRATEGY_BLOCKS, { lang }),
+  getById: (id, lang = "en") =>
+    apiService.get(`${API_ENDPOINTS.STRATEGY_BLOCKS}${id}/`, { lang }),
 };
 
 export const companiesService = {
@@ -94,6 +139,12 @@ export const boardService = {
   getAll: (lang = "en") => apiService.get(API_ENDPOINTS.BOARD, { lang }),
   getById: (id, lang = "en") =>
     apiService.get(`${API_ENDPOINTS.BOARD}${id}/`, { lang }),
+};
+
+export const speechesService = {
+  getAll: (lang = "en") => apiService.get(API_ENDPOINTS.SPEECHES, { lang }),
+  getById: (id, lang = "en") =>
+    apiService.get(`${API_ENDPOINTS.SPEECHES}${id}/`, { lang }),
 };
 
 export const govService = {
@@ -118,6 +169,14 @@ export const postsService = {
   getAll: (lang = "en") => apiService.get(API_ENDPOINTS.POSTS, { lang }),
   getById: (id, lang = "en") =>
     apiService.get(`${API_ENDPOINTS.POSTS}${id}/`, { lang }),
+};
+
+export const pagesService = {
+  getAll: (lang = "en") => apiService.get(API_ENDPOINTS.PAGES, { lang }),
+  getById: (id, lang = "en") =>
+    apiService.get(`${API_ENDPOINTS.PAGES}${id}/`, { lang }),
+  getByKey: (key, lang = "en") =>
+    apiService.get(`${API_ENDPOINTS.PAGES}?key=${key}`, { lang }),
 };
 
 export const legalService = {

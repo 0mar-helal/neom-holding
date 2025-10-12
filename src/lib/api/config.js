@@ -6,20 +6,24 @@ export const API_ENDPOINTS = {
   SETTINGS: "/settings/",
   MENU: "/menu/",
   SECTIONS: "/sections/",
-  KPIS: "/kpis/",
+  HERO: "/hero/",
+  ABOUT: "/about/",
+  STRATEGY_BLOCKS: "/strategy-blocks/",
   COMPANIES: "/companies/",
   BOARD: "/board/",
-  GOV: "/gov/",
+  SPEECHES: "/speeches/",
+  GOV: "/governance/",
   ESG: "/esg/",
   NEWS: "/news/",
-  POSTS: "/posts/",
+  POSTS: "/blogs/",
+  PAGES: "/pages/",
   LEGAL: "/legal/",
   CONTACT: "/contact/",
   SEARCH: "/search/",
 };
 
-// Request timeout (in milliseconds)
-export const REQUEST_TIMEOUT = 10000;
+// Request timeout (in milliseconds) - increased to 30 seconds
+export const REQUEST_TIMEOUT = 30000;
 
 // Default headers
 export const DEFAULT_HEADERS = {

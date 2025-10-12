@@ -5,8 +5,17 @@ import { toast } from "react-toastify";
 import {
   useMenu,
   useSettingsAsObject,
-  useKPIs,
+  useHero,
+  useAbout,
+  useStrategyBlocks,
+  useCompanies,
   useBoard,
+  useSpeeches,
+  useGov,
+  useESG,
+  useNews,
+  usePosts,
+  usePages,
   contactService,
 } from "@/lib/api";
 import LoadingSpinner from "@/components/LoadingSpinner";
@@ -40,20 +49,90 @@ export const AppProvider = ({ children }) => {
     isError: settingsError,
   } = useSettingsAsObject(i18n.language);
   const {
-    kpis,
-    isLoading: kpisLoading,
-    isError: kpisError,
-  } = useKPIs(i18n.language);
+    hero,
+    isLoading: heroLoading,
+    isError: heroError,
+  } = useHero(i18n.language);
+  const {
+    about,
+    isLoading: aboutLoading,
+    isError: aboutError,
+  } = useAbout(i18n.language);
+  const {
+    strategyBlocks,
+    isLoading: strategyBlocksLoading,
+    isError: strategyBlocksError,
+  } = useStrategyBlocks(i18n.language);
+  const {
+    companies,
+    isLoading: companiesLoading,
+    isError: companiesError,
+  } = useCompanies(i18n.language);
   const {
     board,
     isLoading: boardLoading,
     isError: boardError,
   } = useBoard(i18n.language);
+  const {
+    speeches,
+    isLoading: speechesLoading,
+    isError: speechesError,
+  } = useSpeeches(i18n.language);
+  const {
+    gov,
+    isLoading: govLoading,
+    isError: govError,
+  } = useGov(i18n.language);
+  const {
+    esg,
+    isLoading: esgLoading,
+    isError: esgError,
+  } = useESG(i18n.language);
+  const {
+    news,
+    isLoading: newsLoading,
+    isError: newsError,
+  } = useNews(i18n.language);
+  const {
+    posts,
+    isLoading: postsLoading,
+    isError: postsError,
+  } = usePosts(i18n.language);
+  const {
+    pages,
+    isLoading: pagesLoading,
+    isError: pagesError,
+  } = usePages(i18n.language);
 
   // Combined loading state
   const isLoading =
-    menuLoading || settingsLoading || kpisLoading || boardLoading;
-  const isError = menuError || settingsError || kpisError || boardError;
+    menuLoading ||
+    settingsLoading ||
+    heroLoading ||
+    aboutLoading ||
+    strategyBlocksLoading ||
+    companiesLoading ||
+    boardLoading ||
+    speechesLoading ||
+    govLoading ||
+    esgLoading ||
+    newsLoading ||
+    postsLoading ||
+    pagesLoading;
+  const isError =
+    menuError ||
+    settingsError ||
+    heroError ||
+    aboutError ||
+    strategyBlocksError ||
+    companiesError ||
+    boardError ||
+    speechesError ||
+    govError ||
+    esgError ||
+    newsError ||
+    postsError ||
+    pagesError;
 
   // Fallback menu items
   const fallbackMenu = [
@@ -66,20 +145,76 @@ export const AppProvider = ({ children }) => {
     { label: "Contact", href: "#contact", sort: 7 },
   ];
 
-  const menuItems = menu?.results || fallbackMenu;
+  const menuItems = Array.isArray(menu) ? menu : menu?.results || fallbackMenu;
   const sortedMenuItems = menuItems.sort(
     (a, b) => (a.sort || 0) - (b.sort || 0)
   );
 
-  // Process KPIs data
-  const kpisItems = kpis?.results || [];
+  // Process Hero data (including KPIs)
+  const heroData = hero?.[0] || null;
+  const kpisItems = heroData?.kpis || [];
   const sortedKpisItems = kpisItems.sort(
     (a, b) => (a.sort || 0) - (b.sort || 0)
   );
 
+  // Process About data
+  const aboutData = about?.[0] || null;
+
+  // Process Strategy Blocks data
+  const strategyBlocksItems = Array.isArray(strategyBlocks)
+    ? strategyBlocks
+    : strategyBlocks?.results || [];
+  const sortedStrategyBlocksItems = strategyBlocksItems.sort(
+    (a, b) => (a.sort || 0) - (b.sort || 0)
+  );
+
+  // Process Companies data
+  const companiesItems = Array.isArray(companies)
+    ? companies
+    : companies?.results || [];
+  const sortedCompaniesItems = companiesItems.sort(
+    (a, b) => (a.sort || 0) - (b.sort || 0)
+  );
+
   // Process Board data
-  const boardItems = board?.results || [];
+  const boardItems = Array.isArray(board) ? board : board?.results || [];
   const sortedBoardItems = boardItems.sort(
+    (a, b) => (a.sort || 0) - (b.sort || 0)
+  );
+
+  // Process Speeches data
+  const speechesItems = Array.isArray(speeches)
+    ? speeches
+    : speeches?.results || [];
+  const sortedSpeechesItems = speechesItems.sort(
+    (a, b) => new Date(b.created_at || 0) - new Date(a.created_at || 0)
+  );
+
+  // Process Governance data
+  const govItems = Array.isArray(gov) ? gov : gov?.results || [];
+  const sortedGovItems = govItems.sort((a, b) => (a.sort || 0) - (b.sort || 0));
+
+  // Process ESG data
+  const esgItems = Array.isArray(esg) ? esg : esg?.results || [];
+  const sortedEsgItems = esgItems.sort(
+    (a, b) => (a.pillar || 0) - (b.pillar || 0) || (a.sort || 0) - (b.sort || 0)
+  );
+
+  // Process News data
+  const newsItems = Array.isArray(news) ? news : news?.results || [];
+  const sortedNewsItems = newsItems.sort(
+    (a, b) => new Date(b.date_published || 0) - new Date(a.date_published || 0)
+  );
+
+  // Process Posts data
+  const postsItems = Array.isArray(posts) ? posts : posts?.results || [];
+  const sortedPostsItems = postsItems.sort(
+    (a, b) => new Date(b.date_published || 0) - new Date(a.date_published || 0)
+  );
+
+  // Process Pages data
+  const pagesItems = Array.isArray(pages) ? pages : pages?.results || [];
+  const sortedPagesItems = pagesItems.sort(
     (a, b) => (a.sort || 0) - (b.sort || 0)
   );
 
@@ -88,7 +223,7 @@ export const AppProvider = ({ children }) => {
     const element = document.querySelector(href);
     if (element) {
       const elementPosition = element.offsetTop;
-      const offsetPosition = elementPosition - 100;
+      const offsetPosition = elementPosition - 90;
 
       window.scrollTo({
         top: offsetPosition,
@@ -167,7 +302,6 @@ export const AppProvider = ({ children }) => {
     <div className="min-h-screen bg-[#0b1224] text-[#e7ecf4] flex items-center justify-center">
       <div className="text-center">
         <LoadingSpinner size="xl" className="mb-4" />
-        <p className="text-[#9fb1cc]">Loading application data...</p>
       </div>
     </div>
   );
@@ -191,8 +325,18 @@ export const AppProvider = ({ children }) => {
     // Data
     menu: sortedMenuItems,
     settings,
+    hero: heroData,
+    about: aboutData,
+    strategyBlocks: sortedStrategyBlocksItems,
+    companies: sortedCompaniesItems,
     kpis: sortedKpisItems,
     board: sortedBoardItems,
+    speeches: sortedSpeechesItems,
+    gov: sortedGovItems,
+    esg: sortedEsgItems,
+    news: sortedNewsItems,
+    posts: sortedPostsItems,
+    pages: sortedPagesItems,
 
     // Loading states
     isLoading,
