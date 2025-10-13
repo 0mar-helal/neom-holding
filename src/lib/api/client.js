@@ -12,13 +12,9 @@ const apiClient = axios.create({
 apiClient.interceptors.request.use(
   (config) => {
     // Add any request modifications here
-    console.log(
-      `Making API request to: ${config.url} (timeout: ${config.timeout}ms)`
-    );
     return config;
   },
   (error) => {
-    console.error("Request error:", error);
     return Promise.reject(error);
   }
 );
@@ -27,11 +23,9 @@ apiClient.interceptors.request.use(
 apiClient.interceptors.response.use(
   (response) => {
     // Add any response modifications here
-    console.log(`API response received from: ${response.config.url}`);
     return response;
   },
   (error) => {
-    console.error("Response error:", error);
 
     // Handle different error types
     if (error.response) {

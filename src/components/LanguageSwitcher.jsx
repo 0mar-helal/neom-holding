@@ -38,7 +38,7 @@ export const LanguageSwitcher = () => {
       <select
         value={currentLang}
         onChange={(e) => changeLanguage(e.target.value)}
-        className="border-1 border-[#1e2a44] px-1 text-[#e7ecf4] text-[12px] sm:text-sm rounded-lg  py-2 transition-all duration-200 cursor-pointer focus:outline-none"
+        className="border-1 border-[#1e2a44] px-1 text-[#e7ecf4] text-[12px] sm:text-sm rounded-xl  py-2 transition-all duration-200 cursor-pointer focus:outline-none"
       >
         {languages.map((lang) => (
           <option

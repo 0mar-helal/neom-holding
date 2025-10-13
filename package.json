@@ -6,9 +6,13 @@
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "analyze": "ANALYZE=true next build",
+    "lighthouse": "lighthouse http://localhost:3000 --output html --output-path ./lighthouse-report.html",
+    "seo-audit": "lighthouse http://localhost:3000 --only-categories=seo --output html --output-path ./seo-audit.html"
   },
   "dependencies": {
+    "aos": "^2.3.4",
     "axios": "^1.12.2",
     "clsx": "^2.1.1",
     "i18next": "^25.5.3",
@@ -25,6 +29,8 @@
     "@tailwindcss/postcss": "^4",
     "eslint": "^9",
     "eslint-config-next": "15.5.4",
-    "tailwindcss": "^4"
+    "tailwindcss": "^4",
+    "lighthouse": "^12.0.0",
+    "@next/bundle-analyzer": "^15.5.4"
   }
 }

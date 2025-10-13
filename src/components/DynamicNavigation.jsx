@@ -40,7 +40,9 @@ const DynamicNavigation = () => {
       )
     ),
     governance: menu.filter((item) =>
-      ["governance", "esg"].includes(item.href?.replace("#", ""))
+      ["governance", "esg", "investor-relations"].includes(
+        item.href?.replace("#", "")
+      )
     ),
     content: menu.filter((item) =>
       ["news", "blog"].includes(item.href?.replace("#", ""))
@@ -85,7 +87,7 @@ const DynamicNavigation = () => {
           <button
             key={index}
             onClick={() => scrollToSection(item.href)}
-            className="nav-button px-4 py-2.5 rounded-xl text-sm font-medium text-[#9fb1cc] hover:text-[#e7ecf4] hover:bg-[#1e2a44]/80 hover:shadow-lg hover:shadow-[#1e2a44]/20"
+            className="nav-button px-4 py-2.5 rounded-xl text-sm font-medium text-foreground-secondary hover:text-foreground hover:bg-background-accent/80 hover:shadow-lg hover:shadow-background-accent/20 whitespace-nowrap"
           >
             {t(`nav.${sectionKey}`)}
           </button>
@@ -97,24 +99,24 @@ const DynamicNavigation = () => {
         const IconComponent = group.icon;
         return (
           <div key={group.key} className="relative group dropdown-container">
-            <button className="px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 flex items-center gap-2 text-[#9fb1cc] hover:text-[#e7ecf4] hover:bg-[#1e2a44]/60 group-hover:text-[#e7ecf4] group-hover:bg-[#1e2a44]/80 group-hover:shadow-lg group-hover:shadow-[#1e2a44]/20">
+            <button className="px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 flex items-center gap-2 text-foreground-secondary hover:text-foreground hover:bg-background-accent/60 group-hover:text-foreground group-hover:bg-background-accent/80 group-hover:shadow-lg group-hover:shadow-background-accent/20 whitespace-nowrap">
               {group.label}
               <FaChevronDown className="w-3 h-3 transition-transform duration-300 group-hover:rotate-180" />
             </button>
 
             {/* Beautiful dropdown menu - CSS only hover */}
-            <div className="absolute top-full left-0 mt-2 w-72 bg-[#0f172f]/95 backdrop-blur-custom border border-[#1e2a44]/50 rounded-2xl shadow-2xl z-50 py-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+            <div className="absolute top-full left-0 mt-2 w-72 bg-background-card/95 backdrop-blur-custom border border-border/50 rounded-2xl shadow-2xl z-50 py-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
               {/* Dropdown header with gradient */}
-              <div className="px-4 pb-3 border-b border-[#1e2a44]/30">
+              <div className="px-4 pb-3 border-b border-border/30">
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#3abff8]/20 to-[#22c55e]/20 flex items-center justify-center">
-                    <IconComponent className="w-4 h-4 text-[#3abff8]" />
+                  <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary/20 to-primary-light/20 flex items-center justify-center">
+                    <IconComponent className="w-4 h-4 text-primary" />
                   </div>
                   <div>
-                    <h3 className="text-sm font-semibold text-[#e7ecf4]">
+                    <h3 className="text-sm font-semibold text-foreground">
                       {group.label}
                     </h3>
-                    <p className="text-xs text-[#9fb1cc]">
+                    <p className="text-xs text-foreground-secondary">
                       {t(`nav.dropdowns.${group.key}.subtitle`)}
                     </p>
                   </div>
@@ -129,7 +131,7 @@ const DynamicNavigation = () => {
                     <button
                       key={index}
                       onClick={() => scrollToSection(item.href)}
-                      className="dropdown-item-hover w-full text-left rtl:text-right px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 group/item text-[#9fb1cc] hover:text-[#e7ecf4] hover:bg-[#1e2a44]/60"
+                      className="dropdown-item-hover w-full text-left rtl:text-right px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 group/item text-foreground-secondary hover:text-foreground hover:bg-background-accent/60"
                       style={{
                         animationDelay: `${index * 50}ms`,
                         animation: "fadeInScale 0.3s ease-out forwards",
@@ -137,7 +139,7 @@ const DynamicNavigation = () => {
                     >
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
-                          <div className="w-2 h-2 rounded-full bg-[#1e2a44] group-hover/item:bg-[#3abff8]/60 transition-colors duration-200"></div>
+                          <div className="w-2 h-2 rounded-full bg-background-accent group-hover/item:bg-primary/60 transition-colors duration-200"></div>
                           <span>{t(`nav.${sectionKey}`)}</span>
                         </div>
                         <svg
@@ -160,8 +162,8 @@ const DynamicNavigation = () => {
               </div>
 
               {/* Dropdown footer */}
-              <div className="px-4 pt-3 border-t border-[#1e2a44]/30">
-                <p className="text-xs text-[#9fb1cc] text-center">
+              <div className="px-4 pt-3 border-t border-border/30">
+                <p className="text-xs text-foreground-secondary text-center">
                   {t("nav.dropdowns.footer")}
                 </p>
               </div>
@@ -177,9 +179,9 @@ const DynamicNavigation = () => {
           <button
             key={index}
             onClick={() => scrollToSection(item.href)}
-            className="nav-button px-6 py-2.5 rounded-xl text-sm font-bold transition-all duration-300 bg-gradient-to-r from-[#22c55e] to-[#3abff8] text-[#081225] hover:opacity-90 hover:shadow-lg hover:shadow-[#3abff8]/25 hover:scale-105 flex items-center gap-2 relative overflow-hidden group"
+            className="nav-button px-6 py-2.5 rounded-xl text-sm font-bold transition-all duration-300 bg-gradient-to-r from-primary to-primary-hover text-white hover:opacity-90 hover:shadow-lg hover:shadow-primary/25 hover:scale-105 flex items-center gap-2 relative overflow-hidden group whitespace-nowrap"
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-[#3abff8] to-[#22c55e] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary-light opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             <FaPhone className="relative z-10 text-lg group-hover:scale-110 transition-transform duration-200" />
             <span className="relative z-10">{t(`nav.${sectionKey}`)}</span>
             <div className="absolute inset-0 bg-white/20 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>

@@ -1,28 +1,78 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap");
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Primary Colors */
+  --primary: #8141e8;
+  --primary-foreground: #ffffff;
+  --primary-light: #8a4ed2;
+
+  /* Background Colors */
+  --background: #0a1226;
+  --background-card: #0f172f;
+  --background-accent: #1c1c3a;
+
+  /* Text Colors */
+  --foreground: #ffffff;
+  --foreground-secondary: #cccccc;
+  --foreground-muted: #999999;
+
+  /* Border Colors */
+  --border: #3a3a5a;
+  --border-light: #4a4a6a;
+  --border-hover: #8141e8;
+
+  /* Interactive States */
+  --primary-hover: #6b2fc7;
+  --primary-active: #5a2ba6;
+
+  /* Status Colors */
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  --info: #3b82f6;
 }
 
 @theme inline {
+  /* Primary Color System */
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-light: var(--primary-light);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-active: var(--primary-active);
+
+  /* Background System */
   --color-background: var(--background);
+  --color-background-card: var(--background-card);
+  --color-background-accent: var(--background-accent);
+
+  /* Text System */
   --color-foreground: var(--foreground);
+  --color-foreground-secondary: var(--foreground-secondary);
+  --color-foreground-muted: var(--foreground-muted);
+
+  /* Border System */
+  --color-border: var(--border);
+  --color-border-light: var(--border-light);
+  --color-border-hover: var(--border-hover);
+
+  /* Status Colors */
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-error: var(--error);
+  --color-info: var(--info);
+
+  /* Font System */
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  /* font-family: Arial, Helvetica, sans-serif; */
+  font-family: "IBM Plex Sans", sans-serif;
+  overflow-x: hidden;
 }
 
 /* Smooth scrolling for the entire page */
@@ -36,16 +86,16 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  background: #0b1224;
+  background: var(--background);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1e2a44;
+  background: var(--border);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #3abff8;
+  background: var(--primary);
 }
 
 /* Mobile menu animations */
@@ -73,4 +123,380 @@ ol {
 
 li {
   display: list-item;
+}
+
+/* ========================================
+   AOS (Animate On Scroll) Custom Animations
+   ======================================== */
+
+/* Custom fade animations with different directions */
+[data-aos="fade-up-slow"] {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+[data-aos="fade-up-slow"].aos-animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+[data-aos="fade-down-slow"] {
+  opacity: 0;
+  transform: translateY(-60px);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+[data-aos="fade-down-slow"].aos-animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+[data-aos="fade-left-slow"] {
+  opacity: 0;
+  transform: translateX(60px);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+[data-aos="fade-left-slow"].aos-animate {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+[data-aos="fade-right-slow"] {
+  opacity: 0;
+  transform: translateX(-60px);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+[data-aos="fade-right-slow"].aos-animate {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Scale animations */
+[data-aos="scale-up-slow"] {
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+[data-aos="scale-up-slow"].aos-animate {
+  opacity: 1;
+  transform: scale(1);
+}
+
+[data-aos="scale-down-slow"] {
+  opacity: 0;
+  transform: scale(1.2);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+[data-aos="scale-down-slow"].aos-animate {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Flip animations */
+[data-aos="flip-left-slow"] {
+  opacity: 0;
+  transform: perspective(1000px) rotateY(-90deg);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+[data-aos="flip-left-slow"].aos-animate {
+  opacity: 1;
+  transform: perspective(1000px) rotateY(0deg);
+}
+
+[data-aos="flip-right-slow"] {
+  opacity: 0;
+  transform: perspective(1000px) rotateY(90deg);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+[data-aos="flip-right-slow"].aos-animate {
+  opacity: 1;
+  transform: perspective(1000px) rotateY(0deg);
+}
+
+/* Slide animations with bounce */
+[data-aos="slide-up-bounce"] {
+  opacity: 0;
+  transform: translateY(100px);
+  transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+[data-aos="slide-up-bounce"].aos-animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+[data-aos="slide-down-bounce"] {
+  opacity: 0;
+  transform: translateY(-100px);
+  transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+[data-aos="slide-down-bounce"].aos-animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Zoom animations */
+[data-aos="zoom-in-slow"] {
+  opacity: 0;
+  transform: scale(0.5);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+[data-aos="zoom-in-slow"].aos-animate {
+  opacity: 1;
+  transform: scale(1);
+}
+
+[data-aos="zoom-out-slow"] {
+  opacity: 0;
+  transform: scale(1.5);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+[data-aos="zoom-out-slow"].aos-animate {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Rotate animations */
+[data-aos="rotate-left-slow"] {
+  opacity: 0;
+  transform: rotate(-180deg);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+[data-aos="rotate-left-slow"].aos-animate {
+  opacity: 1;
+  transform: rotate(0deg);
+}
+
+[data-aos="rotate-right-slow"] {
+  opacity: 0;
+  transform: rotate(180deg);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+[data-aos="rotate-right-slow"].aos-animate {
+  opacity: 1;
+  transform: rotate(0deg);
+}
+
+/* Stagger animations for lists */
+[data-aos="stagger-fade-up"] {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+[data-aos="stagger-fade-up"].aos-animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Custom delay classes */
+[data-aos-delay="100"] {
+  transition-delay: 0.1s;
+}
+
+[data-aos-delay="200"] {
+  transition-delay: 0.2s;
+}
+
+[data-aos-delay="300"] {
+  transition-delay: 0.3s;
+}
+
+[data-aos-delay="400"] {
+  transition-delay: 0.4s;
+}
+
+[data-aos-delay="500"] {
+  transition-delay: 0.5s;
+}
+
+[data-aos-delay="600"] {
+  transition-delay: 0.6s;
+}
+
+[data-aos-delay="700"] {
+  transition-delay: 0.7s;
+}
+
+[data-aos-delay="800"] {
+  transition-delay: 0.8s;
+}
+
+/* Performance optimizations */
+[data-aos] {
+  will-change: transform, opacity;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  [data-aos] {
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
+
+/* ========================================
+   Custom Loading Spinner Animation
+   ======================================== */
+
+/* Smooth loading spinner animation */
+@keyframes smooth-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Optimized loading spinner class */
+.loading-spinner {
+  animation: smooth-spin 1s linear infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+/* Prevent loading glitches */
+.loading-container {
+  contain: layout style paint;
+  will-change: auto;
+}
+
+/* Smooth loading text animation */
+@keyframes loading-pulse {
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.loading-text {
+  animation: loading-pulse 2s ease-in-out infinite;
+}
+
+/* ========================================
+   Scroll to Top Button
+   ======================================== */
+
+/* Smooth scroll to top animation */
+@keyframes scroll-to-top-fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes scroll-to-top-fade-out {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.8);
+  }
+}
+
+/* Scroll to top button animations */
+.scroll-to-top-enter {
+  animation: scroll-to-top-fade-in 0.3s ease-out forwards;
+}
+
+.scroll-to-top-exit {
+  animation: scroll-to-top-fade-out 0.3s ease-in forwards;
+}
+
+/* Responsive scroll to top button */
+.scroll-to-top-btn {
+  /* Mobile first approach */
+  bottom: 1rem;
+  right: 1rem;
+  padding: 0.625rem;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+/* Small screens and up */
+@media (min-width: 640px) {
+  .scroll-to-top-btn {
+    bottom: 1.5rem;
+    right: 1.5rem;
+    padding: 0.75rem;
+    width: 3rem;
+    height: 3rem;
+  }
+}
+
+/* Large screens and up */
+@media (min-width: 1024px) {
+  .scroll-to-top-btn {
+    bottom: 2rem;
+    right: 2rem;
+  }
+}
+
+/* RTL support for scroll to top button */
+[dir="rtl"] .scroll-to-top-btn {
+  right: auto;
+  left: 1rem;
+}
+
+@media (min-width: 640px) {
+  [dir="rtl"] .scroll-to-top-btn {
+    left: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  [dir="rtl"] .scroll-to-top-btn {
+    left: 2rem;
+  }
+}
+
+/* Hover effects for scroll to top */
+.scroll-to-top-btn:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 10px 25px rgba(129, 65, 232, 0.3);
+}
+
+.scroll-to-top-btn:active {
+  transform: translateY(0) scale(0.95);
+}
+
+/* Focus styles for accessibility */
+.scroll-to-top-btn:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-to-top-btn {
+    transition: none;
+  }
+
+  .scroll-to-top-btn:hover {
+    transform: none;
+  }
 }

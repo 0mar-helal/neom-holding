@@ -16,6 +16,7 @@
     "governance": "Governance",
     "esg": "ESG",
     "investors": "Investors",
+    "investor-relations": "Investor Relations",
     "news": "News",
     "compliance": "Compliance",
     "supply": "Supply Chain",
@@ -26,17 +27,25 @@
     "navigation": "Navigation",
     "languageSwitch": "Language switch",
     "dropdowns": {
+      "main": {
+        "title": "Main",
+        "subtitle": "Main sections"
+      },
       "governance": {
         "title": "Governance",
-        "subtitle": "Select the desired section"
+        "subtitle": "Governance, ESG & Investor Relations"
       },
       "content": {
         "title": "Content",
-        "subtitle": "Select the desired section"
+        "subtitle": "News & Blog"
       },
       "legal": {
         "title": "Legal",
-        "subtitle": "Select the desired section"
+        "subtitle": "Terms & Conditions"
+      },
+      "contact": {
+        "title": "Contact",
+        "subtitle": "Get in touch"
       },
       "footer": "Click to go to section"
     }
@@ -178,7 +187,21 @@
       }
     },
     "investors": {
-      "title": "Investor Relations"
+      "title": "Investor Relations",
+      "distributionPolicies": {
+        "title": "Distribution Policies",
+        "description": "Dividend and investment distribution policies designed to maximize returns for investors while ensuring sustainable company growth."
+      },
+      "financialCalendar": {
+        "title": "Financial Calendar",
+        "description": "Comprehensive timeline of important financial events, quarterly reports, and general shareholder meetings."
+      },
+      "annualReports": {
+        "title": "Annual Reports",
+        "description": "Comprehensive annual reports showcasing financial performance, strategic achievements, and the company's future vision."
+      },
+      "comingSoon": "Coming Soon",
+      "note": "Activable templates — Content and interactive features will be added soon"
     },
     "news": {
       "title": "News & Press"

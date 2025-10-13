@@ -2,6 +2,8 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
+import GlobalLoading from "@/components/GlobalLoading";
+import GlobalError from "@/components/GlobalError";
 import {
   useMenu,
   useSettingsAsObject,
@@ -142,11 +144,35 @@ export const AppProvider = ({ children }) => {
     { label: "Board", href: "#board", sort: 4 },
     { label: "Sectors", href: "#sectors", sort: 5 },
     { label: "ESG", href: "#esg", sort: 6 },
-    { label: "Contact", href: "#contact", sort: 7 },
+    { label: "Investor Relations", href: "#investor-relations", sort: 7 },
+    { label: "Contact", href: "#contact", sort: 8 },
   ];
 
-  const menuItems = Array.isArray(menu) ? menu : menu?.results || fallbackMenu;
-  const sortedMenuItems = menuItems.sort(
+  // Get menu items from API or fallback
+  const apiMenuItems = Array.isArray(menu) ? menu : menu?.results || [];
+
+  // Always include Investor Relations item from frontend
+  const investorRelationsItem = {
+    label: "Investor Relations",
+    href: "#investor-relations",
+    sort: 7,
+  };
+
+  // Check if investor-relations already exists in API menu
+  const hasInvestorRelations = apiMenuItems.some(
+    (item) =>
+      item.href === "#investor-relations" || item.href === "investor-relations"
+  );
+
+  // Combine API menu with frontend items
+  const menuItems = hasInvestorRelations
+    ? apiMenuItems
+    : [...apiMenuItems, investorRelationsItem];
+
+  // Use fallback if no API menu items
+  const finalMenuItems = menuItems.length > 0 ? menuItems : fallbackMenu;
+
+  const sortedMenuItems = finalMenuItems.sort(
     (a, b) => (a.sort || 0) - (b.sort || 0)
   );
 
@@ -297,29 +323,7 @@ export const AppProvider = ({ children }) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [sortedMenuItems]);
 
-  // Global loading component
-  const GlobalLoading = () => (
-    <div className="min-h-screen bg-[#0b1224] text-[#e7ecf4] flex items-center justify-center">
-      <div className="text-center">
-        <LoadingSpinner size="xl" className="mb-4" />
-      </div>
-    </div>
-  );
-
-  // Global error component
-  const GlobalError = () => (
-    <div className="min-h-screen bg-[#0b1224] text-[#e7ecf4] flex items-center justify-center">
-      <div className="text-center max-w-md mx-auto p-6">
-        <ErrorBoundary error={isError} />
-        <button
-          onClick={() => window.location.reload()}
-          className="mt-4 px-6 py-2 bg-[#3abff8] text-[#0b1224] rounded-lg hover:opacity-90 transition-opacity"
-        >
-          Retry
-        </button>
-      </div>
-    </div>
-  );
+  // Use imported components to prevent re-renders
 
   const value = {
     // Data
@@ -362,7 +366,13 @@ export const AppProvider = ({ children }) => {
 
   return (
     <AppContext.Provider value={value}>
-      {isLoading ? <GlobalLoading /> : isError ? <GlobalError /> : children}
+      {isLoading ? (
+        <GlobalLoading />
+      ) : isError ? (
+        <GlobalError error={isError} />
+      ) : (
+        children
+      )}
     </AppContext.Provider>
   );
 };
