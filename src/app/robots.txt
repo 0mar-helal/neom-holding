@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemaps
-Sitemap: https://neomholding.com/sitemap.xml
+Sitemap: https://neomsyria.com/sitemap.xml
 
 # Crawl-delay for respectful crawling
 Crawl-delay: 1
@@ -23,4 +23,4 @@ Allow: /news
 Allow: /blog
 
 # Host directive
-Host: https://neomholding.com
+Host: https://neomsyria.com

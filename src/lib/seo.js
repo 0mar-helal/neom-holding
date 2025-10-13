@@ -2,6 +2,8 @@
  * SEO utility functions for better search engine optimization
  */
 
+import { BASE_URL } from "@/lib/constants";
+
 // Generate meta description with optimal length
 export const generateMetaDescription = (text, maxLength = 160) => {
   if (!text) return "";
@@ -121,7 +123,7 @@ export const generateKeywords = (content, additionalKeywords = []) => {
 
 // Generate Open Graph data
 export const generateOpenGraphData = (pageData) => {
-  const baseUrl = "https://neomholding.com";
+  const baseUrl = BASE_URL;
 
   return {
     title: pageData.title || "Neom Holding | شركة نيوم القابضة",
@@ -139,7 +141,7 @@ export const generateOpenGraphData = (pageData) => {
 
 // Generate structured data for different content types
 export const generateStructuredData = (type, data) => {
-  const baseUrl = "https://neomholding.com";
+  const baseUrl = BASE_URL;
 
   switch (type) {
     case "organization":
@@ -240,19 +242,13 @@ export const validateSEOData = (data) => {
 };
 
 // Generate canonical URL
-export const generateCanonicalUrl = (
-  path,
-  baseUrl = "https://neomholding.com"
-) => {
+export const generateCanonicalUrl = (path, baseUrl = BASE_URL) => {
   const cleanPath = path.startsWith("/") ? path : `/${path}`;
   return `${baseUrl}${cleanPath}`;
 };
 
 // Generate hreflang tags for internationalization
-export const generateHreflangTags = (
-  path,
-  baseUrl = "https://neomholding.com"
-) => {
+export const generateHreflangTags = (path, baseUrl = BASE_URL) => {
   const cleanPath = path.startsWith("/") ? path : `/${path}`;
 
   return [

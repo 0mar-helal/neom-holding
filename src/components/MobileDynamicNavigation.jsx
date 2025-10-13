@@ -80,7 +80,7 @@ const MobileDynamicNavigation = () => {
         <AnimatedMenuIcon
           active={isMenuOpen}
           setActive={setIsMenuOpen}
-          className="rounded-xl text-foreground-secondary hover:text-foreground hover:bg-background-accent transition-all duration-200 border border-border hover:border-border-hover/30"
+          // className="rounded-xl text-foreground-secondary hover:text-foreground hover:bg-background-accent transition-all duration-200 border border-border hover:border-border-hover/30"
           ariaLabel="Toggle menu"
         />
       </div>

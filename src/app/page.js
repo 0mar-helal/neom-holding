@@ -143,19 +143,19 @@ export default function Home() {
             className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-center py-12"
             aria-labelledby="hero-title"
             data-aos="fade-up"
-            data-aos-duration="1000"
+            data-aos-duration="600"
           >
             <div className="lg:col-span-3">
               <div
                 className="bg-background-card border border-border rounded-2xl p-8"
                 data-aos="zoom-in-slow"
-                data-aos-delay="200"
-                data-aos-duration="800"
+                data-aos-delay="100"
+                data-aos-duration="500"
               >
                 <span
                   className="inline-block border border-border rounded-full px-3 py-1 text-sm text-foreground-secondary mb-4"
                   data-aos="fade-up-slow"
-                  data-aos-delay="300"
+                  data-aos-delay="150"
                 >
                   {hero?.badge || t("site.badge")}
                 </span>
@@ -163,14 +163,14 @@ export default function Home() {
                   id="hero-title"
                   className="text-4xl lg:text-5xl font-bold mb-6 leading-tight"
                   data-aos="fade-up-slow"
-                  data-aos-delay="400"
+                  data-aos-delay="100"
                 >
                   {hero?.headline || t("hero.title")}
                 </h1>
                 <p
                   className="text-lg text-foreground-secondary mb-8"
                   data-aos="fade-up-slow"
-                  data-aos-delay="500"
+                  data-aos-delay="250"
                 >
                   {hero?.subtext || t("hero.subtitle")}
                 </p>
@@ -179,7 +179,7 @@ export default function Home() {
                 <div
                   className="grid grid-cols-2 lg:grid-cols-4 gap-4"
                   data-aos="fade-up-slow"
-                  data-aos-delay="600"
+                  data-aos-delay="150"
                 >
                   {kpis && kpis.length > 0 ? (
                     kpis.map((kpi, index) => (
@@ -187,7 +187,7 @@ export default function Home() {
                         key={index}
                         className="bg-gradient-to-b from-background-card to-background-accent border border-border rounded-xl p-4 text-center hover:border-primary transition-colors duration-300"
                         data-aos="scale-up-slow"
-                        data-aos-delay={700 + index * 100}
+                        data-aos-delay={350 + index * 50}
                       >
                         <div className="text-2xl font-bold text-primary mb-1">
                           {kpi.value}
@@ -208,7 +208,7 @@ export default function Home() {
                       <div
                         className="bg-gradient-to-b from-background-card to-background-accent border border-border rounded-xl p-4 text-center"
                         data-aos="scale-up-slow"
-                        data-aos-delay="700"
+                        data-aos-delay="350"
                       >
                         <div className="text-2xl font-bold text-primary mb-1">
                           6+
@@ -220,7 +220,7 @@ export default function Home() {
                       <div
                         className="bg-gradient-to-b from-background-card to-background-accent border border-border rounded-xl p-4 text-center"
                         data-aos="scale-up-slow"
-                        data-aos-delay="800"
+                        data-aos-delay="200"
                       >
                         <div className="text-2xl font-bold text-primary mb-1">
                           10
@@ -232,7 +232,7 @@ export default function Home() {
                       <div
                         className="bg-gradient-to-b from-background-card to-background-accent border border-border rounded-xl p-4 text-center"
                         data-aos="scale-up-slow"
-                        data-aos-delay="900"
+                        data-aos-delay="450"
                       >
                         <div className="text-2xl font-bold text-primary mb-1">
                           500+
@@ -244,7 +244,7 @@ export default function Home() {
                       <div
                         className="bg-gradient-to-b from-background-card to-background-accent border border-border rounded-xl p-4 text-center"
                         data-aos="scale-up-slow"
-                        data-aos-delay="1000"
+                        data-aos-delay="250"
                       >
                         <div className="text-2xl font-bold text-primary mb-1">
                           100%
@@ -262,32 +262,32 @@ export default function Home() {
             <div
               className="lg:col-span-2"
               data-aos="fade-left-slow"
-              data-aos-delay="300"
+              data-aos-delay="150"
             >
               <div
                 className="bg-background-card border border-border rounded-2xl p-8"
                 data-aos="flip-right-slow"
-                data-aos-delay="500"
+                data-aos-delay="250"
               >
                 <h2
                   className="text-2xl font-bold mb-6"
                   data-aos="fade-up-slow"
-                  data-aos-delay="600"
+                  data-aos-delay="150"
                 >
                   {t("hero.portfolioTitle")}
                 </h2>
                 <ul
                   className="space-y-4"
                   data-aos="stagger-fade-up"
-                  data-aos-delay="700"
+                  data-aos-delay="350"
                 >
                   {hero?.portfolio && hero.portfolio.length > 0 ? (
                     hero.portfolio.map((item, index) => (
                       <li
                         key={index}
-                        className="flex items-center justify-between"
+                        className="!flex !items-center !justify-between gap-2"
                         data-aos="fade-up-slow"
-                        data-aos-delay={800 + index * 100}
+                        data-aos-delay={400 + index * 50}
                       >
                         <span>{item.text}</span>
                         <span className="bg-background-accent px-2 py-1 rounded text-sm">
@@ -301,7 +301,7 @@ export default function Home() {
                       <li
                         className="flex items-center justify-between"
                         data-aos="fade-up-slow"
-                        data-aos-delay="800"
+                        data-aos-delay="200"
                       >
                         <span>{t("hero.portfolio.smartAgriculture")}</span>
                         <span className="bg-background-accent px-2 py-1 rounded text-sm">
@@ -311,7 +311,7 @@ export default function Home() {
                       <li
                         className="flex items-center justify-between"
                         data-aos="fade-up-slow"
-                        data-aos-delay="900"
+                        data-aos-delay="450"
                       >
                         <span>{t("hero.portfolio.infrastructure")}</span>
                         <span className="bg-background-accent px-2 py-1 rounded text-sm">
@@ -321,7 +321,7 @@ export default function Home() {
                       <li
                         className="flex items-center justify-between"
                         data-aos="fade-up-slow"
-                        data-aos-delay="1000"
+                        data-aos-delay="250"
                       >
                         <span>{t("hero.portfolio.industry")}</span>
                         <span className="bg-background-accent px-2 py-1 rounded text-sm">
@@ -331,7 +331,7 @@ export default function Home() {
                       <li
                         className="flex items-center justify-between"
                         data-aos="fade-up-slow"
-                        data-aos-delay="1100"
+                        data-aos-delay="550"
                       >
                         <span>{t("hero.portfolio.contracting")}</span>
                         <span className="bg-background-accent px-2 py-1 rounded text-sm">
@@ -341,7 +341,7 @@ export default function Home() {
                       <li
                         className="flex items-center justify-between"
                         data-aos="fade-up-slow"
-                        data-aos-delay="1200"
+                        data-aos-delay="300"
                       >
                         <span>{t("hero.portfolio.tourism")}</span>
                         <span className="bg-background-accent px-2 py-1 rounded text-sm">
@@ -351,7 +351,7 @@ export default function Home() {
                       <li
                         className="flex items-center justify-between"
                         data-aos="fade-up-slow"
-                        data-aos-delay="1300"
+                        data-aos-delay="650"
                       >
                         <span>{t("hero.portfolio.internationalTrade")}</span>
                         <span className="bg-background-accent px-2 py-1 rounded text-sm">
@@ -370,17 +370,17 @@ export default function Home() {
             id="about"
             className="py-12"
             data-aos="fade-up"
-            data-aos-duration="800"
+            data-aos-duration="500"
           >
             <div
               className="bg-background-card border border-border rounded-2xl p-8"
               data-aos="zoom-in-slow"
-              data-aos-delay="200"
+              data-aos-delay="100"
             >
               <h2
                 className="text-3xl font-bold mb-6"
                 data-aos="fade-up-slow"
-                data-aos-delay="300"
+                data-aos-delay="150"
               >
                 {t("sections.about.title")}
               </h2>
@@ -388,7 +388,7 @@ export default function Home() {
                 <div
                   className="text-lg text-foreground-secondary leading-relaxed"
                   data-aos="fade-up-slow"
-                  data-aos-delay="400"
+                  data-aos-delay="200"
                 >
                   {about.body_items.map((item, index) => (
                     <span key={index}>{item}</span>
@@ -398,7 +398,7 @@ export default function Home() {
                 <p
                   className="text-lg text-foreground-secondary leading-relaxed"
                   data-aos="fade-up-slow"
-                  data-aos-delay="400"
+                  data-aos-delay="200"
                 >
                   <strong className="text-foreground">{companyName}</strong>{" "}
                   {t("sections.about.content")}
@@ -412,17 +412,17 @@ export default function Home() {
             id="strategy"
             className="py-12"
             data-aos="fade-up"
-            data-aos-duration="800"
+            data-aos-duration="500"
           >
             <div
               className="bg-background-card border border-border rounded-2xl p-8"
               data-aos="zoom-in-slow"
-              data-aos-delay="200"
+              data-aos-delay="100"
             >
               <h2
                 className="text-3xl font-bold mb-8"
                 data-aos="fade-up-slow"
-                data-aos-delay="300"
+                data-aos-delay="150"
               >
                 {t("sections.strategy.title")}
               </h2>
@@ -430,13 +430,13 @@ export default function Home() {
                 <div
                   className="grid md:grid-cols-2 gap-8"
                   data-aos="fade-up-slow"
-                  data-aos-delay="400"
+                  data-aos-delay="200"
                 >
                   {strategyBlocks.map((block, index) => (
                     <div
                       key={index}
                       data-aos="fade-up-slow"
-                      data-aos-delay={500 + index * 200}
+                      data-aos-delay={250 + index * 100}
                     >
                       <h3 className="text-xl font-bold mb-4">{block.title}</h3>
                       {block.content_type === "ul" && block.content_items ? (
@@ -489,17 +489,17 @@ export default function Home() {
             id="chairman"
             className="py-12"
             data-aos="fade-up"
-            data-aos-duration="800"
+            data-aos-duration="500"
           >
             <div
               className="bg-background-card border border-border rounded-2xl p-8"
               data-aos="zoom-in-slow"
-              data-aos-delay="200"
+              data-aos-delay="100"
             >
               <h2
                 className="text-3xl font-bold mb-8"
                 data-aos="fade-up-slow"
-                data-aos-delay="300"
+                data-aos-delay="150"
               >
                 {t("sections.chairman.title")}
               </h2>
@@ -514,13 +514,13 @@ export default function Home() {
                     <div
                       className="w-32 h-32 rounded-2xl bg-gradient-to-br from-primary to-primary-light flex items-center justify-center text-4xl font-bold text-primary-foreground"
                       data-aos="scale-up-slow"
-                      data-aos-delay={500 + index * 200}
+                      data-aos-delay={250 + index * 100}
                     >
                       {speech.speaker_name?.charAt(0) || "C"}
                     </div>
                     <div
                       data-aos="fade-left-slow"
-                      data-aos-delay={600 + index * 200}
+                      data-aos-delay={300 + index * 100}
                     >
                       <h3 className="text-2xl font-bold mb-2">
                         {speech.speaker_name || t("sections.chairman.name")}
@@ -566,24 +566,24 @@ export default function Home() {
             id="board"
             className="py-12"
             data-aos="fade-up"
-            data-aos-duration="800"
+            data-aos-duration="500"
           >
             <div
               className="bg-background-card border border-border rounded-2xl p-8"
               data-aos="zoom-in-slow"
-              data-aos-delay="200"
+              data-aos-delay="100"
             >
               <h2
                 className="text-3xl font-bold mb-8"
                 data-aos="fade-up-slow"
-                data-aos-delay="300"
+                data-aos-delay="150"
               >
                 {t("sections.board.title")}
               </h2>
               <div
                 className="overflow-x-auto"
                 data-aos="fade-up-slow"
-                data-aos-delay="400"
+                data-aos-delay="200"
               >
                 <table className="w-full border-collapse">
                   <thead>
@@ -605,7 +605,7 @@ export default function Home() {
                               member.is_chairman ? "bg-primary/5" : ""
                             }`}
                             data-aos="fade-up-slow"
-                            data-aos-delay={500 + index * 100}
+                            data-aos-delay={250 + index * 50}
                           >
                             <td className="py-3 px-4">
                               <div className="flex items-center gap-2">
@@ -649,17 +649,17 @@ export default function Home() {
             id="sectors"
             className="py-12"
             data-aos="fade-up"
-            data-aos-duration="800"
+            data-aos-duration="500"
           >
             <div
               className="bg-background-card border border-border rounded-2xl p-8"
               data-aos="zoom-in-slow"
-              data-aos-delay="200"
+              data-aos-delay="100"
             >
               <h2
                 className="text-3xl font-bold mb-8"
                 data-aos="fade-up-slow"
-                data-aos-delay="300"
+                data-aos-delay="150"
               >
                 {companies && companies.length > 0
                   ? i18n.language === "ar"
@@ -670,7 +670,7 @@ export default function Home() {
               <div
                 className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
                 data-aos="fade-up-slow"
-                data-aos-delay="400"
+                data-aos-delay="200"
               >
                 {companies && companies.length > 0
                   ? companies.map((company, index) => (
@@ -678,7 +678,7 @@ export default function Home() {
                         key={index}
                         className="bg-background-accent border border-border rounded-xl p-6 hover:border-border-hover transition-colors"
                         data-aos="scale-up-slow"
-                        data-aos-delay={500 + index * 100}
+                        data-aos-delay={250 + index * 50}
                       >
                         <a href={`#company-${company.key || company.id}`}>
                           <h3 className="text-lg font-bold mb-3 text-foreground hover:text-primary transition-colors">
@@ -698,7 +698,7 @@ export default function Home() {
                         key={index}
                         className="bg-background-accent border border-border rounded-xl p-6 hover:border-border-hover transition-colors"
                         data-aos="scale-up-slow"
-                        data-aos-delay={500 + index * 100}
+                        data-aos-delay={250 + index * 50}
                       >
                         <h3 className="text-lg font-bold mb-3">
                           {sector.name}
@@ -721,24 +721,24 @@ export default function Home() {
                   id={`company-${company.key || company.id}`}
                   className="py-12"
                   data-aos="fade-up"
-                  data-aos-duration="800"
+                  data-aos-duration="500"
                 >
                   <div
                     className="bg-background-card border border-border rounded-2xl p-8"
                     data-aos="zoom-in-slow"
-                    data-aos-delay="200"
+                    data-aos-delay="100"
                   >
                     <h2
                       className="text-3xl font-bold mb-6 text-foreground"
                       data-aos="fade-up-slow"
-                      data-aos-delay="300"
+                      data-aos-delay="150"
                     >
                       {company.name}
                     </h2>
                     <p
                       className="text-foreground-secondary mb-6"
                       data-aos="fade-up-slow"
-                      data-aos-delay="400"
+                      data-aos-delay="200"
                     >
                       {company.detailed_title || company.summary}
                     </p>
@@ -747,13 +747,13 @@ export default function Home() {
                       <ul
                         className="space-y-3 mb-6 text-foreground-secondary"
                         data-aos="fade-up-slow"
-                        data-aos-delay="500"
+                        data-aos-delay="250"
                       >
                         {company.long_items.map((item, itemIndex) => (
                           <li
                             key={itemIndex}
                             data-aos="fade-up-slow"
-                            data-aos-delay={600 + itemIndex * 100}
+                            data-aos-delay={300 + itemIndex * 50}
                           >
                             {item}
                           </li>
@@ -764,7 +764,7 @@ export default function Home() {
                     <div
                       className="mt-6"
                       data-aos="fade-up-slow"
-                      data-aos-delay="700"
+                      data-aos-delay="350"
                     >
                       <a
                         href="#contact"
@@ -786,17 +786,17 @@ export default function Home() {
             id="governance"
             className="py-12"
             data-aos="fade-up"
-            data-aos-duration="800"
+            data-aos-duration="500"
           >
             <div
               className="bg-background-card border border-border rounded-2xl p-8"
               data-aos="zoom-in-slow"
-              data-aos-delay="200"
+              data-aos-delay="100"
             >
               <h2
                 className="text-3xl font-bold mb-8"
                 data-aos="fade-up-slow"
-                data-aos-delay="300"
+                data-aos-delay="150"
               >
                 {t("sections.governance.title")}
               </h2>
@@ -804,14 +804,14 @@ export default function Home() {
                 <div
                   className="space-y-6"
                   data-aos="fade-up-slow"
-                  data-aos-delay="400"
+                  data-aos-delay="200"
                 >
                   {gov.map((item, index) => (
                     <div
                       key={index}
                       className="bg-background-accent border border-border rounded-xl p-6"
                       data-aos="fade-up-slow"
-                      data-aos-delay={500 + index * 100}
+                      data-aos-delay={250 + index * 50}
                     >
                       <p className="text-foreground-secondary leading-relaxed">
                         {item.text}
@@ -823,12 +823,12 @@ export default function Home() {
                 <div
                   className="space-y-6"
                   data-aos="fade-up-slow"
-                  data-aos-delay="400"
+                  data-aos-delay="200"
                 >
                   <div
                     className="bg-background-accent border border-border rounded-xl p-6"
                     data-aos="scale-up-slow"
-                    data-aos-delay="500"
+                    data-aos-delay="250"
                   >
                     <p className="text-foreground-secondary leading-relaxed">
                       {t("sections.governance.content")}
@@ -844,17 +844,17 @@ export default function Home() {
             id="esg"
             className="py-12"
             data-aos="fade-up"
-            data-aos-duration="800"
+            data-aos-duration="500"
           >
             <div
               className="bg-background-card border border-border rounded-2xl p-8"
               data-aos="zoom-in-slow"
-              data-aos-delay="200"
+              data-aos-delay="100"
             >
               <h2
                 className="text-3xl font-bold mb-8"
                 data-aos="fade-up-slow"
-                data-aos-delay="300"
+                data-aos-delay="150"
               >
                 {t("sections.esg.title")}
               </h2>
@@ -862,14 +862,14 @@ export default function Home() {
                 <div
                   className="grid grid-cols-1 md:grid-cols-3 gap-6"
                   data-aos="fade-up-slow"
-                  data-aos-delay="400"
+                  data-aos-delay="200"
                 >
                   {esg.map((item, index) => (
                     <div
                       key={index}
                       className="bg-background-accent border border-border rounded-xl p-6"
                       data-aos="scale-up-slow"
-                      data-aos-delay={500 + index * 100}
+                      data-aos-delay={250 + index * 50}
                     >
                       <h3 className="text-lg font-bold mb-3">{item.title}</h3>
                       <p className="text-foreground-secondary text-sm">
@@ -882,12 +882,12 @@ export default function Home() {
                 <div
                   className="grid grid-cols-1 md:grid-cols-3 gap-6"
                   data-aos="fade-up-slow"
-                  data-aos-delay="400"
+                  data-aos-delay="200"
                 >
                   <div
                     className="bg-background-accent border border-border rounded-xl p-6"
                     data-aos="scale-up-slow"
-                    data-aos-delay="500"
+                    data-aos-delay="250"
                   >
                     <h3 className="text-lg font-bold mb-3">
                       {t("sections.esg.environment.title")}
@@ -899,7 +899,7 @@ export default function Home() {
                   <div
                     className="bg-background-accent border border-border rounded-xl p-6"
                     data-aos="scale-up-slow"
-                    data-aos-delay="600"
+                    data-aos-delay="300"
                   >
                     <h3 className="text-lg font-bold mb-3">
                       {t("sections.esg.social.title")}
@@ -911,7 +911,7 @@ export default function Home() {
                   <div
                     className="bg-background-accent border border-border rounded-xl p-6"
                     data-aos="scale-up-slow"
-                    data-aos-delay="700"
+                    data-aos-delay="350"
                   >
                     <h3 className="text-lg font-bold mb-3">
                       {t("sections.esg.governance.title")}
@@ -930,29 +930,29 @@ export default function Home() {
             id="investor-relations"
             className="py-12"
             data-aos="fade-up"
-            data-aos-duration="800"
+            data-aos-duration="500"
           >
             <div
               className="bg-background-card border border-border rounded-2xl p-8"
               data-aos="zoom-in-slow"
-              data-aos-delay="200"
+              data-aos-delay="100"
             >
               <h2
                 className="text-3xl font-bold mb-8"
                 data-aos="fade-up-slow"
-                data-aos-delay="300"
+                data-aos-delay="150"
               >
                 {t("sections.investors.title")}
               </h2>
               <div
                 className="grid grid-cols-1 md:grid-cols-3 gap-6"
                 data-aos="fade-up-slow"
-                data-aos-delay="400"
+                data-aos-delay="200"
               >
                 <div
                   className="bg-background-accent border border-border rounded-xl p-6"
                   data-aos="scale-up-slow"
-                  data-aos-delay="500"
+                  data-aos-delay="250"
                 >
                   <h3 className="text-lg font-bold mb-3 text-foreground">
                     {t("sections.investors.distributionPolicies.title")}
@@ -969,7 +969,7 @@ export default function Home() {
                 <div
                   className="bg-background-accent border border-border rounded-xl p-6"
                   data-aos="scale-up-slow"
-                  data-aos-delay="600"
+                  data-aos-delay="300"
                 >
                   <h3 className="text-lg font-bold mb-3 text-foreground">
                     {t("sections.investors.financialCalendar.title")}
@@ -986,7 +986,7 @@ export default function Home() {
                 <div
                   className="bg-background-accent border border-border rounded-xl p-6"
                   data-aos="scale-up-slow"
-                  data-aos-delay="700"
+                  data-aos-delay="350"
                 >
                   <h3 className="text-lg font-bold mb-3 text-foreground">
                     {t("sections.investors.annualReports.title")}
@@ -1004,7 +1004,7 @@ export default function Home() {
               <div
                 className="mt-6 text-center"
                 data-aos="fade-up-slow"
-                data-aos-delay="800"
+                data-aos-delay="400"
               >
                 <p className="text-foreground-secondary text-sm">
                   {t("sections.investors.note")}
@@ -1018,17 +1018,17 @@ export default function Home() {
             id="news"
             className="py-12"
             data-aos="fade-up"
-            data-aos-duration="800"
+            data-aos-duration="500"
           >
             <div
               className="bg-background-card border border-border rounded-2xl p-8"
               data-aos="zoom-in-slow"
-              data-aos-delay="200"
+              data-aos-delay="100"
             >
               <h2
                 className="text-3xl font-bold mb-8"
                 data-aos="fade-up-slow"
-                data-aos-delay="300"
+                data-aos-delay="150"
               >
                 {t("sections.news.title")}
               </h2>
@@ -1036,14 +1036,14 @@ export default function Home() {
                 <div
                   className="space-y-6"
                   data-aos="fade-up-slow"
-                  data-aos-delay="400"
+                  data-aos-delay="200"
                 >
                   {news.map((article, index) => (
                     <div
                       key={index}
                       className="bg-background-accent border border-border rounded-xl p-6 hover:border-border-hover transition-colors"
                       data-aos="fade-up-slow"
-                      data-aos-delay={500 + index * 100}
+                      data-aos-delay={250 + index * 50}
                     >
                       <div className="flex justify-between items-start mb-4">
                         <h3 className="text-xl font-bold text-foreground">
@@ -1074,7 +1074,7 @@ export default function Home() {
                 <div
                   className="text-center py-12"
                   data-aos="fade-up-slow"
-                  data-aos-delay="400"
+                  data-aos-delay="200"
                 >
                   <p className="text-foreground-secondary text-lg">
                     {t("sections.news.noNews")}
@@ -1089,17 +1089,17 @@ export default function Home() {
             id="blog"
             className="py-12"
             data-aos="fade-up"
-            data-aos-duration="800"
+            data-aos-duration="500"
           >
             <div
               className="bg-background-card border border-border rounded-2xl p-8"
               data-aos="zoom-in-slow"
-              data-aos-delay="200"
+              data-aos-delay="100"
             >
               <h2
                 className="text-3xl font-bold mb-8"
                 data-aos="fade-up-slow"
-                data-aos-delay="300"
+                data-aos-delay="150"
               >
                 {posts && posts.length > 0
                   ? i18n.language === "ar"
@@ -1111,14 +1111,14 @@ export default function Home() {
                 <div
                   className="space-y-6"
                   data-aos="fade-up-slow"
-                  data-aos-delay="400"
+                  data-aos-delay="200"
                 >
                   {posts.map((post, index) => (
                     <div
                       key={index}
                       className="bg-background-accent border border-border rounded-xl p-6 hover:border-border-hover transition-colors"
                       data-aos="fade-up-slow"
-                      data-aos-delay={500 + index * 100}
+                      data-aos-delay={250 + index * 50}
                     >
                       <div className="mb-4">
                         <div className="flex justify-between items-center mb-2">
@@ -1172,7 +1172,7 @@ export default function Home() {
                 <div
                   className="text-center py-12"
                   data-aos="fade-up-slow"
-                  data-aos-delay="400"
+                  data-aos-delay="200"
                 >
                   <p className="text-foreground-secondary text-lg">
                     {i18n.language === "ar"
@@ -1189,26 +1189,26 @@ export default function Home() {
             id="contact"
             className="py-12"
             data-aos="fade-up"
-            data-aos-duration="800"
+            data-aos-duration="500"
           >
             <div
               className="bg-background-card border border-border rounded-2xl p-8"
               data-aos="zoom-in-slow"
-              data-aos-delay="200"
+              data-aos-delay="100"
             >
               <h2
                 className="text-3xl font-bold mb-8"
                 data-aos="fade-up-slow"
-                data-aos-delay="300"
+                data-aos-delay="150"
               >
                 {t("sections.contact.title")}
               </h2>
               <div
                 className="grid grid-cols-1 lg:grid-cols-2 gap-8"
                 data-aos="fade-up-slow"
-                data-aos-delay="400"
+                data-aos-delay="200"
               >
-                <div data-aos="fade-right-slow" data-aos-delay="500">
+                <div data-aos="fade-right-slow" data-aos-delay="250">
                   <h3 className="text-xl font-bold mb-4">
                     {t("sections.contact.office")}
                   </h3>
@@ -1244,7 +1244,7 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                <div data-aos="fade-left-slow" data-aos-delay="600">
+                <div data-aos="fade-left-slow" data-aos-delay="300">
                   <form onSubmit={handleSubmit} className="space-y-4">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
@@ -1328,16 +1328,16 @@ export default function Home() {
           </section>
 
           {/* Legal Pages Section */}
-          <section className="py-12" data-aos="fade-up" data-aos-duration="800">
+          <section className="py-12" data-aos="fade-up" data-aos-duration="500">
             <div
               className="max-w-7xl mx-auto px-6"
               data-aos="zoom-in-slow"
-              data-aos-delay="200"
+              data-aos-delay="100"
             >
               <div
                 className="flex flex-col gap-6"
                 data-aos="fade-up-slow"
-                data-aos-delay="300"
+                data-aos-delay="150"
               >
                 {pages && pages.length > 0 ? (
                   pages.map((page, index) => (
@@ -1346,7 +1346,7 @@ export default function Home() {
                       id={page.key || `legal-${index}`}
                       className="bg-background-card border border-border rounded-2xl p-6 hover:border-border-hover transition-colors"
                       data-aos="fade-up-slow"
-                      data-aos-delay={400 + index * 100}
+                      data-aos-delay={200 + index * 50}
                     >
                       <h3 className="text-xl font-bold mb-4 text-foreground">
                         {page.title}
@@ -1381,7 +1381,7 @@ export default function Home() {
                       id="compliance"
                       className="bg-background-card border border-border rounded-2xl p-6 hover:border-border-hover transition-colors"
                       data-aos="fade-up-slow"
-                      data-aos-delay="400"
+                      data-aos-delay="200"
                     >
                       <h3 className="text-xl font-bold mb-4 text-foreground">
                         {t("sections.legal.compliance.title")}
@@ -1402,7 +1402,7 @@ export default function Home() {
                       id="privacy"
                       className="bg-background-card border border-border rounded-2xl p-6 hover:border-border-hover transition-colors"
                       data-aos="fade-up-slow"
-                      data-aos-delay="500"
+                      data-aos-delay="250"
                     >
                       <h3 className="text-xl font-bold mb-4 text-foreground">
                         {t("sections.legal.privacy.title")}
@@ -1423,7 +1423,7 @@ export default function Home() {
                       id="supply"
                       className="bg-background-card border border-border rounded-2xl p-6 hover:border-border-hover transition-colors"
                       data-aos="fade-up-slow"
-                      data-aos-delay="600"
+                      data-aos-delay="300"
                     >
                       <h3 className="text-xl font-bold mb-4 text-foreground">
                         {t("sections.legal.supply.title")}
@@ -1444,7 +1444,7 @@ export default function Home() {
                       id="terms"
                       className="bg-background-card border border-border rounded-2xl p-6 hover:border-border-hover transition-colors"
                       data-aos="fade-up-slow"
-                      data-aos-delay="700"
+                      data-aos-delay="350"
                     >
                       <h3 className="text-xl font-bold mb-4 text-foreground">
                         {t("sections.legal.terms.title")}

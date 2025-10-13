@@ -5,8 +5,9 @@ import { AppProvider } from "@/contexts/AppContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import PerformanceOptimizer from "@/components/PerformanceOptimizer";
-import SEOAudit from "@/components/SEOAudit";
+// import SEOAudit from "@/components/SEOAudit";
 import AOSProvider from "@/components/AOSProvider";
+import { BASE_URL } from "@/lib/constants";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -55,7 +56,7 @@ export const metadata = {
     type: "website",
     locale: "en_US",
     alternateLocale: "ar_SA",
-    url: "https://neomholding.com",
+    url: BASE_URL,
     siteName: "Neom Holding",
     title: "Neom Holding | شركة نيوم القابضة - Investing in Syria's Future",
     description:
@@ -78,10 +79,10 @@ export const metadata = {
     creator: "@neomholding",
   },
   alternates: {
-    canonical: "https://neomholding.com",
+    canonical: BASE_URL,
     languages: {
-      "en-US": "https://neomholding.com/en",
-      "ar-SA": "https://neomholding.com/ar",
+      "en-US": `${BASE_URL}/en`,
+      "ar-SA": `${BASE_URL}/ar`,
     },
   },
   verification: {

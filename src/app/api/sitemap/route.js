@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
+import { BASE_URL } from "@/lib/constants";
 
 export async function GET() {
-  const baseUrl = "https://neomholding.com";
+  const baseUrl = BASE_URL;
   const currentDate = new Date().toISOString();
 
   // Static pages

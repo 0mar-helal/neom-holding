@@ -2,6 +2,7 @@
 
 import { useTranslation } from "react-i18next";
 import { useAppContext } from "@/contexts/AppContext";
+import { BASE_URL, DEFAULT_CONTACT_EMAIL } from "@/lib/constants";
 
 const StructuredData = () => {
   const { t, i18n } = useTranslation();
@@ -13,13 +14,13 @@ const StructuredData = () => {
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "@id": "https://neomholding.com/#organization",
+    "@id": `${BASE_URL}/#organization`, 
     name: settings?.brand_name_en || t("site.companyName"),
     alternateName: settings?.brand_name_ar || "شركة نيوم القابضة",
-    url: "https://neomholding.com",
+    url: `${BASE_URL}`,
     logo: {
       "@type": "ImageObject",
-      url: "https://neomholding.com/logo.png",
+      url: `${BASE_URL}/logo.png`,
       width: 200,
       height: 200,
     },
@@ -35,7 +36,7 @@ const StructuredData = () => {
       "@type": "ContactPoint",
       telephone: settings?.contact_phone || "+966-XX-XXX-XXXX",
       contactType: "customer service",
-      email: settings?.contact_email || "info@neomholding.com",
+      email: settings?.contact_email || `${DEFAULT_CONTACT_EMAIL}`,
     },
     sameAs: [
       "https://linkedin.com/company/neomholding",
@@ -62,10 +63,10 @@ const StructuredData = () => {
       ? {
           "@context": "https://schema.org",
           "@type": "Corporation",
-          "@id": "https://neomholding.com/#corporation",
+          "@id": `${BASE_URL}/#corporation`,
           name: settings?.brand_name_en || t("site.companyName"),
           alternateName: settings?.brand_name_ar || "شركة نيوم القابضة",
-          url: "https://neomholding.com",
+          url: `${BASE_URL}`,
           description: t("site.description"),
           foundingDate: "2020",
           address: {
@@ -77,7 +78,7 @@ const StructuredData = () => {
             "@type": "ContactPoint",
             telephone: settings?.contact_phone || "+966-XX-XXX-XXXX",
             contactType: "customer service",
-            email: settings?.contact_email || "info@neomholding.com",
+            email: settings?.contact_email || `${DEFAULT_CONTACT_EMAIL}`,
           },
           memberOf: {
             "@type": "Organization",
@@ -97,18 +98,18 @@ const StructuredData = () => {
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "@id": "https://neomholding.com/#website",
-    url: "https://neomholding.com",
+    "@id": `${BASE_URL}/#website`,
+    url: `${BASE_URL}`,
     name: settings?.brand_name_en || t("site.companyName"),
     description: t("site.description"),
     publisher: {
-      "@id": "https://neomholding.com/#organization",
+      "@id": `${BASE_URL}/#organization`,
     },
     potentialAction: {
       "@type": "SearchAction",
       target: {
         "@type": "EntryPoint",
-        urlTemplate: "https://neomholding.com/search?q={search_term_string}",
+        urlTemplate: `${BASE_URL}/search?q={search_term_string}`,
       },
       "query-input": "required name=search_term_string",
     },
@@ -124,31 +125,31 @@ const StructuredData = () => {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://neomholding.com",
+        item: `${BASE_URL}`,
       },
       {
         "@type": "ListItem",
         position: 2,
         name: isRTL ? "من نحن" : "About",
-        item: "https://neomholding.com/#about",
+        item: `${BASE_URL}/#about`,
       },
       {
         "@type": "ListItem",
         position: 3,
         name: isRTL ? "الاستراتيجية" : "Strategy",
-        item: "https://neomholding.com/#strategy",
+        item: `${BASE_URL}/#strategy`,
       },
       {
         "@type": "ListItem",
         position: 4,
         name: isRTL ? "القطاعات" : "Sectors",
-        item: "https://neomholding.com/#sectors",
+        item: `${BASE_URL}/#sectors`,
       },
       {
         "@type": "ListItem",
         position: 5,
         name: isRTL ? "تواصل معنا" : "Contact",
-        item: "https://neomholding.com/#contact",
+        item: `${BASE_URL}/#contact`,
       },
     ],
   };

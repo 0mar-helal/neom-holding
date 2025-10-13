@@ -2,6 +2,7 @@
 
 import { useTranslation } from "react-i18next";
 import Head from "next/head";
+import { BASE_URL } from "@/lib/constants";
 
 const SEOHead = ({
   title,
@@ -22,9 +23,7 @@ const SEOHead = ({
   const fullDescription =
     description ||
     "A world-class Saudi-Syrian holding company investing in Syria's future through agriculture, industry, infrastructure, tourism, contracting, and international trade with robust governance and ESG standards.";
-  const fullUrl = url
-    ? `https://neomholding.com${url}`
-    : "https://neomholding.com";
+  const fullUrl = url ? `${BASE_URL}${url}` : BASE_URL;
 
   const defaultKeywords = [
     "Neom Holding",
@@ -61,7 +60,7 @@ const SEOHead = ({
       <meta property="og:description" content={fullDescription} />
       <meta property="og:url" content={fullUrl} />
       <meta property="og:site_name" content="Neom Holding" />
-      <meta property="og:image" content={`https://neomholding.com${image}`} />
+      <meta property="og:image" content={`${BASE_URL}${image}`} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
       <meta property="og:image:alt" content={fullTitle} />
@@ -71,7 +70,7 @@ const SEOHead = ({
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={fullDescription} />
-      <meta name="twitter:image" content={`https://neomholding.com${image}`} />
+      <meta name="twitter:image" content={`${BASE_URL}${image}`} />
       <meta name="twitter:creator" content="@neomholding" />
       <meta name="twitter:site" content="@neomholding" />
 
@@ -81,13 +80,9 @@ const SEOHead = ({
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
       {/* Language Alternates */}
-      <link rel="alternate" hrefLang="en" href="https://neomholding.com/en" />
-      <link rel="alternate" hrefLang="ar" href="https://neomholding.com/ar" />
-      <link
-        rel="alternate"
-        hrefLang="x-default"
-        href="https://neomholding.com"
-      />
+      <link rel="alternate" hrefLang="en" href="${BASE_URL}/en" />
+      <link rel="alternate" hrefLang="ar" href="${BASE_URL}/ar" />
+      <link rel="alternate" hrefLang="x-default" href="${BASE_URL}" />
 
       {/* Structured Data */}
       {structuredData && (
