@@ -80,9 +80,9 @@ const SEOHead = ({
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
       {/* Language Alternates */}
-      <link rel="alternate" hrefLang="en" href="${BASE_URL}/en" />
-      <link rel="alternate" hrefLang="ar" href="${BASE_URL}/ar" />
-      <link rel="alternate" hrefLang="x-default" href="${BASE_URL}" />
+      <link rel="alternate" hrefLang="en" href={`${BASE_URL}`} />
+      <link rel="alternate" hrefLang="ar" href={`${BASE_URL}`} />
+      <link rel="alternate" hrefLang="x-default" href={`${BASE_URL}`} />
 
       {/* Structured Data */}
       {structuredData && (

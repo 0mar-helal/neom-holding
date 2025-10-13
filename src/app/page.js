@@ -580,19 +580,23 @@ export default function Home() {
               >
                 {t("sections.board.title")}
               </h2>
+              {/* Desktop Table View */}
               <div
-                className="overflow-x-auto"
+                className="hidden md:block overflow-x-auto shadow-lg rounded-lg"
                 data-aos="fade-up-slow"
                 data-aos-delay="200"
               >
-                <table className="w-full border-collapse">
+                <table className="w-full border-collapse overflow-y-hidden min-w-[700px]">
                   <thead>
                     <tr className="border-b border-border">
-                      <th className="rtl:text-right text-left py-3 px-4 font-semibold text-primary">
+                      <th className="rtl:text-right text-left py-3 px-4 font-semibold text-primary w-1/4">
                         {t("sections.board.chairman")}
                       </th>
-                      <th className="rtl:text-right text-left py-3 px-4 font-semibold text-primary">
+                      <th className="rtl:text-right text-left py-3 px-4 font-semibold text-primary w-1/2">
                         {t("sections.board.fullName")}
+                      </th>
+                      <th className="rtl:text-right text-left py-3 px-4 font-semibold text-primary w-1/4">
+                        {t("sections.board.nationality")}
                       </th>
                     </tr>
                   </thead>
@@ -620,6 +624,9 @@ export default function Home() {
                             <td className="py-3 px-4 text-foreground-secondary">
                               {member.full_name}
                             </td>
+                            <td className="py-3 px-4 text-foreground-secondary">
+                              {member.nationality}
+                            </td>
                           </tr>
                         ))
                       : // Fallback to translation data if API data is not available
@@ -636,10 +643,76 @@ export default function Home() {
                               {member.role}
                             </td>
                             <td className="py-3 px-4">{member.name}</td>
+                            <td className="py-3 px-4 text-foreground-secondary">
+                              {member.nationality ||
+                                t("sections.board.notSpecified")}
+                            </td>
                           </tr>
                         ))}
                   </tbody>
                 </table>
+              </div>
+
+              {/* Mobile Card View */}
+              <div
+                className="md:hidden space-y-4"
+                data-aos="fade-up-slow"
+                data-aos-delay="200"
+              >
+                {board && board.length > 0
+                  ? board.map((member, index) => (
+                      <div
+                        key={index}
+                        className={`bg-background-accent border border-border rounded-xl p-4 ${
+                          member.is_chairman
+                            ? "border-primary/30 bg-primary/5"
+                            : ""
+                        }`}
+                        data-aos="fade-up-slow"
+                        data-aos-delay={250 + index * 50}
+                      >
+                        <div className="flex items-center justify-between mb-2">
+                          <div className="flex items-center gap-2">
+                            {member.is_chairman && (
+                              <span className="w-2 h-2 bg-primary-light rounded-full"></span>
+                            )}
+                            <span className="font-semibold text-foreground text-sm">
+                              {member.role_label}
+                            </span>
+                          </div>
+                          <span className="text-xs text-foreground-secondary bg-background px-2 py-1 rounded">
+                            {member.nationality}
+                          </span>
+                        </div>
+                        <p className="text-foreground-secondary text-sm">
+                          {member.full_name}
+                        </p>
+                      </div>
+                    ))
+                  : // Fallback to translation data if API data is not available
+                    t("sections.board.members", {
+                      returnObjects: true,
+                    }).map((member, index) => (
+                      <div
+                        key={index}
+                        className="bg-background-accent border border-border rounded-xl p-4"
+                        data-aos="fade-up-slow"
+                        data-aos-delay={250 + index * 50}
+                      >
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="font-semibold text-foreground text-sm">
+                            {member.role}
+                          </span>
+                          <span className="text-xs text-foreground-secondary bg-background px-2 py-1 rounded">
+                            {member.nationality ||
+                              t("sections.board.notSpecified")}
+                          </span>
+                        </div>
+                        <p className="text-foreground-secondary text-sm">
+                          {member.name}
+                        </p>
+                      </div>
+                    ))}
               </div>
             </div>
           </section>
@@ -680,7 +753,28 @@ export default function Home() {
                         data-aos="scale-up-slow"
                         data-aos-delay={250 + index * 50}
                       >
-                        <a href={`#company-${company.key || company.id}`}>
+                        <a
+                          href={`#company-${
+                            company.name.toLowerCase().replace(/ /g, "-") ||
+                            company.id
+                          }`}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            const targetId = `company-${
+                              company.name.toLowerCase().replace(/ /g, "-") ||
+                              company.id
+                            }`;
+                            const targetElement =
+                              document.getElementById(targetId);
+                            if (targetElement) {
+                              const offsetTop = targetElement.offsetTop - 100; // 100px offset above the section
+                              window.scrollTo({
+                                top: offsetTop,
+                                behavior: "smooth",
+                              });
+                            }
+                          }}
+                        >
                           <h3 className="text-lg font-bold mb-3 text-foreground hover:text-primary transition-colors">
                             {company.name}
                           </h3>
@@ -718,7 +812,9 @@ export default function Home() {
               {companies.map((company, index) => (
                 <section
                   key={index}
-                  id={`company-${company.key || company.id}`}
+                  id={`company-${
+                    company.name.toLowerCase().replace(/ /g, "-") || company.id
+                  }`}
                   className="py-12"
                   data-aos="fade-up"
                   data-aos-duration="500"

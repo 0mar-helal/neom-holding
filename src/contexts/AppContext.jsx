@@ -20,8 +20,6 @@ import {
   usePages,
   contactService,
 } from "@/lib/api";
-import LoadingSpinner from "@/components/LoadingSpinner";
-import ErrorBoundary from "@/components/ErrorBoundary";
 
 const AppContext = createContext();
 

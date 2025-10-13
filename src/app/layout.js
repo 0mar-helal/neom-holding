@@ -81,8 +81,8 @@ export const metadata = {
   alternates: {
     canonical: BASE_URL,
     languages: {
-      "en-US": `${BASE_URL}/en`,
-      "ar-SA": `${BASE_URL}/ar`,
+      "en-US": `${BASE_URL}`,
+      "ar-SA": `${BASE_URL}`,
     },
   },
   verification: {
