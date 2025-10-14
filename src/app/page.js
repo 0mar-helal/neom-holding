@@ -512,11 +512,31 @@ export default function Home() {
                     data-aos-delay={400 + index * 200}
                   >
                     <div
-                      className="w-32 h-32 rounded-2xl bg-gradient-to-br from-primary to-primary-light flex items-center justify-center text-4xl font-bold text-primary-foreground"
+                      className="w-32 h-32 rounded-2xl bg-gradient-to-br from-primary to-primary-light flex items-center justify-center text-4xl font-bold text-primary-foreground overflow-hidden"
                       data-aos="scale-up-slow"
                       data-aos-delay={250 + index * 100}
                     >
-                      {speech.speaker_name?.charAt(0) || "C"}
+                      {speech.photo ? (
+                        <Image
+                          src={speech.photo}
+                          alt={speech.speaker_name || "Speaker"}
+                          width={128}
+                          height={128}
+                          className="w-full h-full object-cover rounded-2xl"
+                          onError={(e) => {
+                            e.target.style.display = "none";
+                            e.target.nextSibling.style.display = "flex";
+                          }}
+                        />
+                      ) : null}
+                      <div
+                        className={`w-full h-full flex items-center justify-center ${
+                          speech.photo ? "hidden" : "flex"
+                        }`}
+                        style={{ display: speech.photo ? "none" : "flex" }}
+                      >
+                        {speech.speaker_name?.charAt(0) || "C"}
+                      </div>
                     </div>
                     <div
                       data-aos="fade-left-slow"

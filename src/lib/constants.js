@@ -15,7 +15,7 @@ export const SITE_DESCRIPTION =
 
 // Social media and branding
 export const LOGO_URL = `${BASE_URL}/logo.png`;
-export const FAVICON_URL = `${BASE_URL}/favicon.ico`;
+export const FAVICON_URL = `${BASE_URL}/logo.png`;
 
 // API endpoints
 export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || BASE_URL;

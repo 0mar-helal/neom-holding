@@ -32,56 +32,33 @@ const DynamicNavigation = () => {
     );
   }
 
-  // Group menu items logically
-  const groupedMenu = {
-    main: menu.filter((item) =>
-      ["about", "strategy", "chairman", "board", "sectors"].includes(
-        item.href?.replace("#", "")
-      )
-    ),
-    governance: menu.filter((item) =>
-      ["governance", "esg", "investor-relations"].includes(
-        item.href?.replace("#", "")
-      )
-    ),
-    content: menu.filter((item) =>
-      ["news", "blog"].includes(item.href?.replace("#", ""))
-    ),
-    legal: menu.filter((item) =>
-      ["compliance", "privacy", "supply", "terms"].includes(
-        item.href?.replace("#", "")
-      )
-    ),
-    contact: menu.filter((item) =>
-      ["contact"].includes(item.href?.replace("#", ""))
-    ),
-  };
+  // Separate main items and groups from the backend menu
+  const mainItems = menu.filter(
+    (item) => item.type === "item" && item.children.length === 0
+  );
+  const groups = menu.filter((item) => item.type === "group");
 
-  const dropdownGroups = [
-    {
-      key: "governance",
-      label: t("nav.dropdowns.governance.title"),
-      items: groupedMenu.governance,
-      icon: FaBuilding,
-    },
-    {
-      key: "content",
-      label: t("nav.dropdowns.content.title"),
-      items: groupedMenu.content,
-      icon: FaNewspaper,
-    },
-    {
-      key: "legal",
-      label: t("nav.dropdowns.legal.title"),
-      items: groupedMenu.legal,
-      icon: FaGavel,
-    },
-  ];
+  const dropdownGroups = groups.map((group) => {
+    // Map group keys to icons
+    const iconMap = {
+      governance: FaBuilding,
+      content: FaNewspaper,
+      legal: FaGavel,
+    };
+
+    return {
+      key: group.label.toLowerCase().replace(/\s+/g, "-"),
+      label: group.label,
+      items: group.children,
+      icon:
+        iconMap[group.label.toLowerCase().replace(/\s+/g, "-")] || FaBuilding,
+    };
+  });
 
   return (
     <nav className="hidden xl:flex items-center gap-2">
       {/* Main navigation items */}
-      {groupedMenu.main.map((item, index) => {
+      {mainItems.map((item, index) => {
         const sectionKey = item.href?.replace("#", "");
         return (
           <button
@@ -89,7 +66,7 @@ const DynamicNavigation = () => {
             onClick={() => scrollToSection(item.href)}
             className="nav-button px-4 py-2.5 rounded-xl text-sm font-medium text-foreground-secondary hover:text-foreground hover:bg-background-accent/80 hover:shadow-lg hover:shadow-background-accent/20 whitespace-nowrap"
           >
-            {t(`nav.${sectionKey}`)}
+            {item.label}
           </button>
         );
       })}
@@ -116,9 +93,6 @@ const DynamicNavigation = () => {
                     <h3 className="text-sm font-semibold text-foreground">
                       {group.label}
                     </h3>
-                    <p className="text-xs text-foreground-secondary">
-                      {t(`nav.dropdowns.${group.key}.subtitle`)}
-                    </p>
                   </div>
                 </div>
               </div>
@@ -126,7 +100,6 @@ const DynamicNavigation = () => {
               {/* Dropdown items with enhanced styling */}
               <div className="px-2 py-2 max-h-64 overflow-y-auto dropdown-scroll">
                 {group.items.map((item, index) => {
-                  const sectionKey = item.href?.replace("#", "");
                   return (
                     <button
                       key={index}
@@ -140,7 +113,7 @@ const DynamicNavigation = () => {
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
                           <div className="w-2 h-2 rounded-full bg-background-accent group-hover/item:bg-primary/60 transition-colors duration-200"></div>
-                          <span>{t(`nav.${sectionKey}`)}</span>
+                          <span>{item.label}</span>
                         </div>
                         <svg
                           className="w-4 h-4 opacity-0 group-hover/item:opacity-100 transition-all duration-200 transform group-hover/item:translate-x-1"
@@ -173,21 +146,22 @@ const DynamicNavigation = () => {
       })}
 
       {/* Contact button with enhanced styling */}
-      {groupedMenu.contact.map((item, index) => {
-        const sectionKey = item.href?.replace("#", "");
-        return (
-          <button
-            key={index}
-            onClick={() => scrollToSection(item.href)}
-            className="nav-button px-6 py-2.5 rounded-xl text-sm font-bold transition-all duration-300 bg-gradient-to-r from-primary to-primary-hover text-white hover:opacity-90 hover:shadow-lg hover:shadow-primary/25 hover:scale-105 flex items-center gap-2 relative overflow-hidden group whitespace-nowrap"
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary-light opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            <FaPhone className="relative z-10 text-lg group-hover:scale-110 transition-transform duration-200" />
-            <span className="relative z-10">{t(`nav.${sectionKey}`)}</span>
-            <div className="absolute inset-0 bg-white/20 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
-          </button>
-        );
-      })}
+      {mainItems
+        .filter((item) => item.href === "#contact")
+        .map((item, index) => {
+          return (
+            <button
+              key={index}
+              onClick={() => scrollToSection(item.href)}
+              className="nav-button px-6 py-2.5 rounded-xl text-sm font-bold transition-all duration-300 bg-gradient-to-r from-primary to-primary-hover text-white hover:opacity-90 hover:shadow-lg hover:shadow-primary/25 hover:scale-105 flex items-center gap-2 relative overflow-hidden group whitespace-nowrap"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary-light opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <FaPhone className="relative z-10 text-lg group-hover:scale-110 transition-transform duration-200" />
+              <span className="relative z-10">{item.label}</span>
+              <div className="absolute inset-0 bg-white/20 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+            </button>
+          );
+        })}
     </nav>
   );
 };

@@ -5,6 +5,14 @@ const nextConfig = {
     optimizePackageImports: ["react-icons", "react-i18next"],
   },
 
+  // Target modern browsers to reduce legacy JavaScript
+  compiler: {
+    removeConsole: process.env.NODE_ENV === "production",
+  },
+
+  // Modern browser targets
+  swcMinify: true,
+
   // Image optimization
   images: {
     formats: ["image/webp", "image/avif"],
@@ -94,6 +102,20 @@ const nextConfig = {
           test: /[\\/]node_modules[\\/]/,
           name: "vendors",
           chunks: "all",
+        },
+        // Separate React Icons to reduce bundle size
+        reactIcons: {
+          test: /[\\/]node_modules[\\/]react-icons[\\/]/,
+          name: "react-icons",
+          chunks: "all",
+          priority: 10,
+        },
+        // Separate i18next to reduce bundle size
+        i18next: {
+          test: /[\\/]node_modules[\\/](react-i18next|i18next)[\\/]/,
+          name: "i18next",
+          chunks: "all",
+          priority: 10,
         },
       };
     }

@@ -35,10 +35,15 @@ export const LanguageSwitcher = () => {
 
   return (
     <div className="flex items-center gap-2">
+      <label htmlFor="language-select" className="sr-only">
+        {t("language.select") || "Select Language"}
+      </label>
       <select
+        id="language-select"
         value={currentLang}
         onChange={(e) => changeLanguage(e.target.value)}
-        className="border-1 border-[#1e2a44] px-1 text-[#e7ecf4] text-[12px] sm:text-sm rounded-lg  py-2 transition-all duration-200 cursor-pointer focus:outline-none"
+        className="border-1 border-[#1e2a44] px-1 text-[#e7ecf4] text-[12px] sm:text-sm rounded-lg  py-2 transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/50"
+        aria-label={t("language.select") || "Select Language"}
       >
         {languages.map((lang) => (
           <option

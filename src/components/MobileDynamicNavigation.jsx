@@ -37,40 +37,25 @@ const MobileDynamicNavigation = () => {
     );
   }
 
-  // Group menu items for mobile
-  const groupedMenu = {
-    main: menu.filter((item) =>
-      ["about", "strategy", "chairman", "board", "sectors"].includes(
-        item.href?.replace("#", "")
-      )
-    ),
-    governance: menu.filter((item) =>
-      ["governance", "esg", "investor-relations"].includes(
-        item.href?.replace("#", "")
-      )
-    ),
-    content: menu.filter((item) =>
-      ["news", "blog"].includes(item.href?.replace("#", ""))
-    ),
-    legal: menu.filter((item) =>
-      ["compliance", "privacy", "supply", "terms"].includes(
-        item.href?.replace("#", "")
-      )
-    ),
-    contact: menu.filter((item) =>
-      ["contact"].includes(item.href?.replace("#", ""))
-    ),
-  };
+  // Separate main items and groups from the backend menu
+  const mainItems = menu.filter(
+    (item) => item.type === "item" && item.children.length === 0
+  );
+  const groups = menu.filter((item) => item.type === "group");
 
   const menuGroups = [
-    { title: t("nav.dropdowns.main.title"), items: groupedMenu.main },
     {
-      title: t("nav.dropdowns.governance.title"),
-      items: groupedMenu.governance,
+      title: "الرئيسية",
+      items: mainItems.filter((item) => item.href !== "#contact"),
     },
-    { title: t("nav.dropdowns.content.title"), items: groupedMenu.content },
-    { title: t("nav.dropdowns.legal.title"), items: groupedMenu.legal },
-    { title: t("nav.dropdowns.contact.title"), items: groupedMenu.contact },
+    ...groups.map((group) => ({
+      title: group.label,
+      items: group.children,
+    })),
+    {
+      title: "تواصل",
+      items: mainItems.filter((item) => item.href === "#contact"),
+    },
   ];
 
   return (
@@ -114,7 +99,7 @@ const MobileDynamicNavigation = () => {
                           : "text-foreground-secondary hover:text-foreground hover:bg-background-accent"
                       }`}
                     >
-                      {t(`nav.${item.href?.replace("#", "")}`)}
+                      {item.label}
                     </button>
                   ))}
                 </div>

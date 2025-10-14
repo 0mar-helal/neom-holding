@@ -8,7 +8,7 @@ const SEOHead = ({
   title,
   description,
   keywords = [],
-  image = "/og-image.jpg",
+  image = "/logo.png",
   url,
   type = "website",
   structuredData,

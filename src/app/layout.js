@@ -63,7 +63,7 @@ export const metadata = {
       "A world-class Saudi-Syrian holding company investing in Syria's future through agriculture, industry, infrastructure, tourism, contracting, and international trade.",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/logo.png",
         width: 1200,
         height: 630,
         alt: "Neom Holding - Investing in Syria's Future",
@@ -99,8 +99,8 @@ export const metadata = {
     telephone: false,
   },
   icons: {
-    icon: "/Logo.png",
-    apple: "/Logo.png",
+    icon: "/logo.png",
+    apple: "/logo.png",
   },
   manifest: "/site.webmanifest",
 };
@@ -108,6 +108,24 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="ar" dir="rtl">
+      <head>
+          <link rel="icon" href="/logo.png" sizes="any" />
+        <link rel="icon" href="/logo.png" type="image/svg+xml" />
+        <link rel="preload" href="/logo.png" as="image" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        <link rel="dns-prefetch" href="https://unpkg.com" />
+        <link
+          rel="stylesheet"
+          href="https://unpkg.com/aos@next/dist/aos.css"
+          media="print"
+          // onLoad="this.media='all'"
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

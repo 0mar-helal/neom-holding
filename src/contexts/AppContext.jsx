@@ -244,6 +244,11 @@ export const AppProvider = ({ children }) => {
 
   // Scroll to section function
   const scrollToSection = (href) => {
+    if (!href || href.trim() === "") {
+      setIsMenuOpen(false);
+      return;
+    }
+
     const element = document.querySelector(href);
     if (element) {
       const elementPosition = element.offsetTop;
@@ -299,7 +304,9 @@ export const AppProvider = ({ children }) => {
   // Track active section on scroll
   useEffect(() => {
     const handleScroll = () => {
-      const sections = sortedMenuItems.map((item) => item.href);
+      const sections = sortedMenuItems
+        .map((item) => item.href)
+        .filter((href) => href && href.trim() !== "");
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {

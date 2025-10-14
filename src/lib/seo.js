@@ -131,7 +131,7 @@ export const generateOpenGraphData = (pageData) => {
       pageData.description ||
       "A world-class Saudi-Syrian holding company investing in Syria's future",
     url: `${baseUrl}${pageData.url || ""}`,
-    image: pageData.image || `${baseUrl}/og-image.jpg`,
+    image: pageData.image || `${baseUrl}/logo.png`,
     type: pageData.type || "website",
     siteName: "Neom Holding",
     locale: pageData.locale || "en_US",
