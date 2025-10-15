@@ -58,7 +58,7 @@ const DynamicNavigation = () => {
   return (
     <nav className="hidden xl:flex items-center gap-2">
       {/* Main navigation items */}
-      {mainItems.map((item, index) => {
+      {mainItems.filter((item) => item.href !== "#contact").map((item, index) => {
         const sectionKey = item.href?.replace("#", "");
         return (
           <button

@@ -602,11 +602,11 @@ export default function Home() {
               </h2>
               {/* Desktop Table View */}
               <div
-                className="hidden md:block overflow-x-auto shadow-lg rounded-lg"
+                className="hidden md:block overflow-x-auto overflow-y-hidden shadow-lg rounded-lg"
                 data-aos="fade-up-slow"
                 data-aos-delay="200"
               >
-                <table className="w-full border-collapse overflow-y-hidden min-w-[700px]">
+                <table className="w-full border-collapse min-w-[700px]">
                   <thead>
                     <tr className="border-b border-border">
                       <th className="rtl:text-right text-left py-3 px-4 font-semibold text-primary w-1/4">
@@ -1043,7 +1043,7 @@ export default function Home() {
 
           {/* Investor Relations Section */}
           <section
-            id="investor-relations"
+            id="Investor"
             className="py-12"
             data-aos="fade-up"
             data-aos-duration="500"
