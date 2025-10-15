@@ -169,6 +169,8 @@ export const postsService = {
   getAll: (lang = "en") => apiService.get(API_ENDPOINTS.POSTS, { lang }),
   getById: (id, lang = "en") =>
     apiService.get(`${API_ENDPOINTS.POSTS}${id}/`, { lang }),
+  getBySlug: (slug, lang = "en") =>
+    apiService.get(`${API_ENDPOINTS.POSTS}${slug}/`, { lang }),
 };
 
 export const pagesService = {

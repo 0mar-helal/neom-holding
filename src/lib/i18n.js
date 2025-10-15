@@ -12,9 +12,17 @@ const resources = {
   },
 };
 
+// Get language from localStorage or default to "ar"
+const getStoredLanguage = () => {
+  if (typeof window !== "undefined") {
+    return localStorage.getItem("neom-language") || "ar";
+  }
+  return "ar";
+};
+
 i18n.use(initReactI18next).init({
   resources,
-  lng: "ar",
+  lng: getStoredLanguage(),
   fallbackLng: "en",
   defaultNS: "neom",
   ns: ["neom"],

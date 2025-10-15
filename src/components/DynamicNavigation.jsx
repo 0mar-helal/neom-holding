@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { useAppContext } from "@/contexts/AppContext";
+import { useHomeContext } from "@/contexts/HomeContext";
 import LoadingSpinner from "./LoadingSpinner";
 import ErrorBoundary from "./ErrorBoundary";
 import {
@@ -14,7 +14,7 @@ import "@/styles/dropdown-animations.css";
 
 const DynamicNavigation = () => {
   const { t } = useTranslation();
-  const { menu, isLoading, isError, scrollToSection } = useAppContext();
+  const { menu, isLoading, isError, scrollToSection } = useHomeContext();
 
   if (isLoading) {
     return (
@@ -58,18 +58,20 @@ const DynamicNavigation = () => {
   return (
     <nav className="hidden xl:flex items-center gap-2">
       {/* Main navigation items */}
-      {mainItems.filter((item) => item.href !== "#contact").map((item, index) => {
-        const sectionKey = item.href?.replace("#", "");
-        return (
-          <button
-            key={index}
-            onClick={() => scrollToSection(item.href)}
-            className="nav-button px-4 py-2.5 rounded-xl text-sm font-medium text-foreground-secondary hover:text-foreground hover:bg-background-accent/80 hover:shadow-lg hover:shadow-background-accent/20 whitespace-nowrap"
-          >
-            {item.label}
-          </button>
-        );
-      })}
+      {mainItems
+        .filter((item) => item.href !== "#contact")
+        .map((item, index) => {
+          const sectionKey = item.href?.replace("#", "");
+          return (
+            <button
+              key={index}
+              onClick={() => scrollToSection(item.href)}
+              className="nav-button px-4 py-2.5 rounded-xl text-sm font-medium text-foreground-secondary hover:text-foreground hover:bg-background-accent/80 hover:shadow-lg hover:shadow-background-accent/20 whitespace-nowrap"
+            >
+              {item.label}
+            </button>
+          );
+        })}
 
       {/* Dropdown groups with CSS hover */}
       {dropdownGroups.map((group) => {

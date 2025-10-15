@@ -45,6 +45,7 @@ export {
   useESG,
   useNews,
   usePosts,
+  usePostBySlug,
   usePages,
   useLegal,
   useContact,

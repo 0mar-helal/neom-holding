@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 
 export const LanguageSwitcher = () => {
   const { t, i18n } = useTranslation();
-  const [currentLang, setCurrentLang] = useState(i18n.language || "ar");
+  const [currentLang, setCurrentLang] = useState("ar");
 
   const languages = [
     { code: "en", name: "English", flag: "🇺🇸" },
@@ -15,23 +15,35 @@ export const LanguageSwitcher = () => {
   const changeLanguage = (langCode) => {
     i18n.changeLanguage(langCode);
     setCurrentLang(langCode);
-    // Update HTML lang attribute
-    document.documentElement.lang = langCode;
-    // Update dir attribute for RTL support
-    document.documentElement.dir = langCode === "ar" ? "rtl" : "ltr";
-    // Force a re-render by updating the body class
-    document.body.className = document.body.className.replace(/rtl|ltr/g, "");
-    document.body.classList.add(langCode === "ar" ? "rtl" : "ltr");
+    // Save to localStorage
+    localStorage.setItem("neom-language", langCode);
   };
 
   useEffect(() => {
-    // Set initial direction
-    document.documentElement.dir = currentLang === "ar" ? "rtl" : "ltr";
-    document.documentElement.lang = currentLang;
-    // Set body class for RTL support
-    document.body.className = document.body.className.replace(/rtl|ltr/g, "");
-    document.body.classList.add(currentLang === "ar" ? "rtl" : "ltr");
-  }, [currentLang]);
+    // Initialize from localStorage or i18n language
+    const storedLang = localStorage.getItem("neom-language");
+    const initialLang = storedLang || i18n.language || "ar";
+
+    // Only change language if we have a stored language different from current
+    if (storedLang && storedLang !== i18n.language) {
+      i18n.changeLanguage(storedLang);
+    }
+
+    setCurrentLang(initialLang);
+  }, []);
+
+  // Listen for language changes from i18n
+  useEffect(() => {
+    const handleLanguageChange = (lng) => {
+      setCurrentLang(lng);
+    };
+
+    i18n.on("languageChanged", handleLanguageChange);
+
+    return () => {
+      i18n.off("languageChanged", handleLanguageChange);
+    };
+  }, [i18n]);
 
   return (
     <div className="flex items-center gap-2">

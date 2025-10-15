@@ -301,6 +301,25 @@ export const usePosts = (lang = "en") => {
   };
 };
 
+export const usePostBySlug = (slug, lang = "en") => {
+  const { data, error, isLoading, mutate } = useSWR(
+    slug ? `post-${slug}-${lang}` : null,
+    () => postsService.getBySlug(slug, lang),
+    {
+      revalidateOnFocus: false,
+      revalidateOnReconnect: true,
+      dedupingInterval: 300000, // 5 minutes
+    }
+  );
+
+  return {
+    post: data,
+    isLoading,
+    isError: error,
+    mutate,
+  };
+};
+
 // Pages hooks
 export const usePages = (lang = "en") => {
   const { data, error, isLoading, mutate } = useSWR(

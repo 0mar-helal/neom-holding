@@ -2,12 +2,16 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { I18nProvider } from "@/components/providers/I18nProvider";
 import { AppProvider } from "@/contexts/AppContext";
+import { RouteProvider } from "@/contexts/RouteProvider";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import PerformanceOptimizer from "@/components/PerformanceOptimizer";
-// import SEOAudit from "@/components/SEOAudit";
 import AOSProvider from "@/components/AOSProvider";
+import ConditionalHeader from "@/components/ConditionalHeader";
+import Footer from "@/components/Footer";
+import LanguageInitializer from "@/components/LanguageInitializer";
 import { BASE_URL } from "@/lib/constants";
+import ScrollToTop from "@/components/ScrollToTop";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -109,7 +113,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="ar" dir="rtl">
       <head>
-          <link rel="icon" href="/logo.png" sizes="any" />
+        <link rel="icon" href="/logo.png" sizes="any" />
         <link rel="icon" href="/logo.png" type="image/svg+xml" />
         <link rel="preload" href="/logo.png" as="image" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -131,23 +135,30 @@ export default function RootLayout({ children }) {
       >
         <I18nProvider>
           <AppProvider>
-            <AOSProvider>
-              <PerformanceOptimizer />
-              {children}
-              {/* {process.env.NODE_ENV === "development" && <SEOAudit />} */}
-              <ToastContainer
-                position="bottom-right"
-                autoClose={5000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={true}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="dark"
-              />
-            </AOSProvider>
+            <RouteProvider>
+              <AOSProvider>
+                <PerformanceOptimizer />
+                <LanguageInitializer />
+                <ConditionalHeader />
+                {children}
+                <Footer />
+                {/* {process.env.NODE_ENV === "development" && <SEOAudit />} */}
+                <ToastContainer
+                  position="bottom-right"
+                  autoClose={5000}
+                  hideProgressBar={false}
+                  newestOnTop={false}
+                  closeOnClick
+                  rtl={true}
+                  pauseOnFocusLoss
+                  draggable
+                  pauseOnHover
+                  theme="dark"
+                />
+                {/* Scroll to Top Button */}
+                <ScrollToTop />
+              </AOSProvider>
+            </RouteProvider>
           </AppProvider>
         </I18nProvider>
       </body>

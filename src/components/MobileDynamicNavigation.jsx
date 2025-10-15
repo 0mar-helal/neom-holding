@@ -1,21 +1,14 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { useAppContext } from "@/contexts/AppContext";
+import { useHomeContext } from "@/contexts/HomeContext";
 import LoadingSpinner from "./LoadingSpinner";
 import ErrorBoundary from "./ErrorBoundary";
 import AnimatedMenuIcon from "./AnimatedMenuIcon";
 
 const MobileDynamicNavigation = () => {
   const { t } = useTranslation();
-  const {
-    menu,
-    isLoading,
-    isError,
-    isMenuOpen,
-    setIsMenuOpen,
-    activeSection,
-    scrollToSection,
-  } = useAppContext();
+  const { menu, isLoading, isError, isMenuOpen, toggleMenu, scrollToSection } =
+    useHomeContext();
 
   if (isLoading) {
     return (
@@ -64,7 +57,7 @@ const MobileDynamicNavigation = () => {
       <div className="relative z-[10000000]">
         <AnimatedMenuIcon
           active={isMenuOpen}
-          setActive={setIsMenuOpen}
+          setActive={toggleMenu}
           // className="rounded-xl text-foreground-secondary hover:text-foreground hover:bg-background-accent transition-all duration-200 border border-border hover:border-border-hover/30"
           ariaLabel="Toggle menu"
         />
@@ -91,13 +84,8 @@ const MobileDynamicNavigation = () => {
                       key={index}
                       onClick={() => {
                         scrollToSection(item.href);
-                        setIsMenuOpen(false);
                       }}
-                      className={`w-full text-left rtl:text-right px-3 py-2 rounded-lg transition-all duration-200 font-medium text-sm whitespace-nowrap ${
-                        activeSection === item.href
-                          ? "bg-primary/20 text-primary border border-primary/30"
-                          : "text-foreground-secondary hover:text-foreground hover:bg-background-accent"
-                      }`}
+                      className="w-full text-left rtl:text-right px-3 py-2 rounded-lg transition-all duration-200 font-medium text-sm whitespace-nowrap text-foreground-secondary hover:text-foreground hover:bg-background-accent"
                     >
                       {item.label}
                     </button>

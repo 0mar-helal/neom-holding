@@ -1,12 +1,14 @@
 "use client";
 
 import { useTranslation } from "react-i18next";
+import { useHomeContext } from "@/contexts/HomeContext";
 import { useAppContext } from "@/contexts/AppContext";
 import { BASE_URL, DEFAULT_CONTACT_EMAIL } from "@/lib/constants";
 
 const StructuredData = () => {
   const { t, i18n } = useTranslation();
-  const { settings, companies, board, kpis } = useAppContext();
+  const { settings } = useAppContext();
+  const { companies, board, kpis } = useHomeContext();
   const currentLang = i18n.language;
   const isRTL = currentLang === "ar";
 
@@ -14,7 +16,7 @@ const StructuredData = () => {
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "@id": `${BASE_URL}/#organization`, 
+    "@id": `${BASE_URL}/#organization`,
     name: settings?.brand_name_en || t("site.companyName"),
     alternateName: settings?.brand_name_ar || "شركة نيوم القابضة",
     url: `${BASE_URL}`,
