@@ -31,6 +31,10 @@
         "title": "Main",
         "subtitle": "Main sections"
       },
+      "mobile": {
+        "main": "Main",
+        "contact": "Contact"
+      },
       "governance": {
         "title": "Governance",
         "subtitle": "Governance, ESG & Investor Relations"

@@ -4,6 +4,18 @@ import { useTranslation } from "react-i18next";
 import { useHomeContext } from "@/contexts/HomeContext";
 import { useState } from "react";
 import { MdLocationOn, MdPhone, MdEmail } from "react-icons/md";
+import {
+  FaFacebook,
+  FaXTwitter,
+  FaThreads,
+  FaInstagram,
+  FaLinkedin,
+  FaYoutube,
+  FaTiktok,
+  FaSnapchat,
+  FaTelegram,
+  FaWhatsapp,
+} from "react-icons/fa6";
 import Image from "next/image";
 import SEOHead from "@/components/SEOHead";
 import StructuredData from "@/components/StructuredData";
@@ -34,6 +46,71 @@ export default function Home() {
     subject: "",
     message: "",
   });
+
+  // Dynamic social media configuration
+  const socialMediaConfig = {
+    facebook_account: {
+      icon: FaFacebook,
+      name: "Facebook",
+      color: "bg-[#1877F2] hover:bg-[#166FE5]",
+      urlPrefix: "",
+    },
+    x_account: {
+      icon: FaXTwitter,
+      name: "X",
+      color: "bg-black hover:bg-gray-800",
+      urlPrefix: "https://",
+    },
+    threads_account: {
+      icon: FaThreads,
+      name: "Threads",
+      color: "bg-black hover:bg-gray-800",
+      urlPrefix: "",
+    },
+    instagram_account: {
+      icon: FaInstagram,
+      name: "Instagram",
+      color:
+        "bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600",
+      urlPrefix: "",
+    },
+    linkedin_account: {
+      icon: FaLinkedin,
+      name: "LinkedIn",
+      color: "bg-[#0077B5] hover:bg-[#005885]",
+      urlPrefix: "",
+    },
+    youtube_account: {
+      icon: FaYoutube,
+      name: "YouTube",
+      color: "bg-[#FF0000] hover:bg-[#CC0000]",
+      urlPrefix: "",
+    },
+    tiktok_account: {
+      icon: FaTiktok,
+      name: "TikTok",
+      color: "bg-black hover:bg-gray-800",
+      urlPrefix: "",
+    },
+    snapchat_account: {
+      icon: FaSnapchat,
+      name: "Snapchat",
+      color: "bg-[#FFFC00] text-black hover:bg-[#E6E300]",
+      urlPrefix: "",
+    },
+    telegram_account: {
+      icon: FaTelegram,
+      name: "Telegram",
+      color: "bg-[#0088CC] hover:bg-[#006699]",
+      urlPrefix: "",
+    },
+    whatsapp_account: {
+      icon: FaWhatsapp,
+      name: "WhatsApp",
+      color: "bg-[#25D366] hover:bg-[#1DA851]",
+      urlPrefix: "",
+    },
+  };
 
   const handleInputChange = (e) => {
     setFormData({
@@ -70,13 +147,48 @@ export default function Home() {
     }
   };
 
-  // Loading and error states are now handled by AppProvider
 
-  // Get company name from settings or fallback to translation
-  const companyName =
-    i18n.language === "ar"
-      ? settings?.brand_name_ar || t("site.companyName")
-      : settings?.brand_name_en || t("site.companyName");
+  // Function to render social media links dynamically
+  const renderSocialMediaLinks = () => {
+    if (!settings) return null;
+
+    // Get all social media accounts from settings that have values
+    const socialAccounts = Object.keys(socialMediaConfig).filter(
+      (key) => settings[key] && settings[key].trim() !== ""
+    );
+
+    if (socialAccounts.length === 0) return null;
+
+    return (
+      <div className="pt-4">
+        <h4 className="text-lg font-semibold text-foreground mb-3">
+          {i18n.language === "ar" ? "تابعنا على" : "Follow Us"}
+        </h4>
+        <div className="flex flex-wrap gap-3">
+          {socialAccounts.map((accountKey) => {
+            const config = socialMediaConfig[accountKey];
+            const IconComponent = config.icon;
+            const accountUrl = settings[accountKey];
+            const fullUrl = config.urlPrefix + accountUrl;
+
+            return (
+              <a
+                key={accountKey}
+                href={fullUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`flex items-center gap-2 px-4 py-2 text-white rounded-lg transition-colors ${config.color}`}
+                aria-label={config.name}
+              >
+                <IconComponent className="w-5 h-5" />
+                {/* <span className="text-sm font-medium">{config.name}</span> */}
+              </a>
+            );
+          })}
+        </div>
+      </div>
+    );
+  };
 
   return (
     <>
@@ -941,14 +1053,19 @@ export default function Home() {
                       <div className="flex items-start gap-3">
                         <MdLocationOn className="text-primary text-xl mt-0.5 flex-shrink-0" />
                         <p className="text-foreground-secondary">
-                          {t("sections.contact.address")}
+                          {i18n.language === "ar"
+                            ? settings?.office_address_ar ||
+                              t("sections.contact.address")
+                            : settings?.office_address_en ||
+                              t("sections.contact.address")}
                         </p>
                       </div>
 
                       <div className="flex items-center gap-3">
                         <MdPhone className="text-primary text-xl flex-shrink-0" />
                         <p className="text-foreground-secondary">
-                          {t("sections.contact.phone")}
+                          {settings?.office_phone ||
+                            t("sections.contact.phone")}
                         </p>
                       </div>
 
@@ -961,6 +1078,9 @@ export default function Home() {
                           {settings?.contact_email}
                         </a>
                       </div>
+
+                      {/* Social Media Accounts - Dynamic */}
+                      {renderSocialMediaLinks()}
                     </div>
                   </div>
                   <div data-aos="fade-left" data-aos-delay="300">

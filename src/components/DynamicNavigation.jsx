@@ -39,19 +39,36 @@ const DynamicNavigation = () => {
   const groups = menu.filter((item) => item.type === "group");
 
   const dropdownGroups = groups.map((group) => {
-    // Map group keys to icons
+    // Map group labels to icons (both Arabic and English)
     const iconMap = {
+      // English keys
       governance: FaBuilding,
       content: FaNewspaper,
       legal: FaGavel,
+      // Arabic keys
+      الحوكمة: FaBuilding,
+      المحتوى: FaNewspaper,
+      القانونية: FaGavel,
+      // Additional variations
+      governance: FaBuilding,
+      content: FaNewspaper,
+      legal: FaGavel,
+      "الحوكمة-والاستدامة-وعلاقات-المستثمرين": FaBuilding,
+      "الأخبار-والمدونة": FaNewspaper,
+      "الشروط-والأحكام": FaGavel,
+    };
+
+    // Get the icon based on the group label
+    const getIcon = (label) => {
+      const normalizedLabel = label.toLowerCase().replace(/\s+/g, "-");
+      return iconMap[label] || iconMap[normalizedLabel] || FaBuilding;
     };
 
     return {
       key: group.label.toLowerCase().replace(/\s+/g, "-"),
       label: group.label,
       items: group.children,
-      icon:
-        iconMap[group.label.toLowerCase().replace(/\s+/g, "-")] || FaBuilding,
+      icon: getIcon(group.label),
     };
   });
 

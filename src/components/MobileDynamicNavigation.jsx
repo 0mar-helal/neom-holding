@@ -38,7 +38,7 @@ const MobileDynamicNavigation = () => {
 
   const menuGroups = [
     {
-      title: "الرئيسية",
+      title: t("nav.dropdowns.mobile.main"),
       items: mainItems.filter((item) => item.href !== "#contact"),
     },
     ...groups.map((group) => ({
@@ -46,7 +46,7 @@ const MobileDynamicNavigation = () => {
       items: group.children,
     })),
     {
-      title: "تواصل",
+      title: t("nav.dropdowns.mobile.contact"),
       items: mainItems.filter((item) => item.href === "#contact"),
     },
   ];
