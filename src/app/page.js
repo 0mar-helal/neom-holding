@@ -59,7 +59,7 @@ export default function Home() {
       icon: FaXTwitter,
       name: "X",
       color: "bg-black hover:bg-gray-800",
-      urlPrefix: "https://",
+      urlPrefix: "",
     },
     threads_account: {
       icon: FaThreads,
