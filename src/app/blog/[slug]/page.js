@@ -121,7 +121,7 @@ export default function BlogPostPage() {
             data-aos-delay="200"
           >
             <div
-              className="text-foreground leading-relaxed"
+              className="text-foreground leading-relaxed blog-content"
               dangerouslySetInnerHTML={{ __html: post.content || "" }}
               style={{
                 direction: i18n.language === "ar" ? "rtl" : "ltr",
