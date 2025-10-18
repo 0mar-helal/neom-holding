@@ -262,8 +262,8 @@ export default function Home() {
                       hero?.kpis.map((kpi, index) => (
                         <div
                           key={index}
-                          className="bg-gradient-to-b from-background-card to-background-accent border border-border rounded-xl p-4 text-center hover:border-primary transition-colors duration-300"
-                          data-aos="scale-up"
+                          className="bg-gradient-to-b from-background-card to-background-accent border border-border rounded-xl p-4 text-center hover:border-primary transition"
+                          data-aos="fade-up"
                           data-aos-delay={350 + index * 50}
                         >
                           <div className="text-2xl font-bold text-primary mb-1">
@@ -302,7 +302,7 @@ export default function Home() {
                   </h2>
                   <ul
                     className="space-y-4"
-                    data-aos="stagger-fade-up"
+                    data-aos="fade-up"
                     data-aos-delay="350"
                   >
                     {hero?.portfolio &&
@@ -613,7 +613,7 @@ export default function Home() {
                       <div
                         key={index}
                         className="bg-background-accent border border-border rounded-xl p-6 hover:border-border-hover transition-colors"
-                        data-aos="scale-up"
+                        data-aos="zoom-in-up"
                         data-aos-delay={250 + index * 50}
                       >
                         <a
@@ -783,7 +783,7 @@ export default function Home() {
                       <div
                         key={index}
                         className="bg-background-accent border border-border rounded-xl p-6"
-                        data-aos="scale-up"
+                        data-aos="zoom-in-up"
                         data-aos-delay={250 + index * 50}
                       >
                         <h3 className="text-lg font-bold mb-3">{item.title}</h3>
@@ -818,7 +818,7 @@ export default function Home() {
                 >
                   <div
                     className="bg-background-accent border border-border rounded-xl p-6"
-                    data-aos="scale-up"
+                    data-aos="zoom-in-up"
                     data-aos-delay="250"
                   >
                     <h3 className="text-lg font-bold mb-3 text-foreground">
@@ -835,7 +835,7 @@ export default function Home() {
                   </div>
                   <div
                     className="bg-background-accent border border-border rounded-xl p-6"
-                    data-aos="scale-up"
+                    data-aos="zoom-in-up"
                     data-aos-delay="300"
                   >
                     <h3 className="text-lg font-bold mb-3 text-foreground">
@@ -852,7 +852,7 @@ export default function Home() {
                   </div>
                   <div
                     className="bg-background-accent border border-border rounded-xl p-6"
-                    data-aos="scale-up"
+                    data-aos="zoom-in-up"
                     data-aos-delay="350"
                   >
                     <h3 className="text-lg font-bold mb-3 text-foreground">
