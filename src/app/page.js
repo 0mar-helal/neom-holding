@@ -147,7 +147,6 @@ export default function Home() {
     }
   };
 
-
   // Function to render social media links dynamically
   const renderSocialMediaLinks = () => {
     if (!settings) return null;
@@ -181,7 +180,6 @@ export default function Home() {
                 aria-label={config.name}
               >
                 <IconComponent className="w-5 h-5" />
-                {/* <span className="text-sm font-medium">{config.name}</span> */}
               </a>
             );
           })}
@@ -665,24 +663,42 @@ export default function Home() {
                     data-aos-duration="500"
                   >
                     <div
-                      className="bg-background-card border border-border rounded-2xl p-8"
+                      className="bg-background-card border border-border rounded-2xl p-8 relative"
                       data-aos="zoom-in"
                       data-aos-delay="100"
                     >
-                      <h2
-                        className="text-3xl font-bold mb-6 text-foreground"
-                        data-aos="fade-up"
-                        data-aos-delay="150"
-                      >
-                        {company.name}
-                      </h2>
-                      <p
-                        className="text-foreground-secondary mb-6"
-                        data-aos="fade-up"
-                        data-aos-delay="200"
-                      >
-                        {company.detailed_title || company.summary}
-                      </p>
+                      {/* Thumbnail Image - Top Left */}
+                      {company.thumbnail && (
+                        <div
+                          className="absolute top-4 left-4 w-16 h-16 z-10"
+                          data-aos="fade-right"
+                          data-aos-delay="150"
+                        >
+                          <img
+                            src={company.thumbnail}
+                            alt={company.name}
+                            className="w-full h-full object-cover rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
+                          />
+                        </div>
+                      )}
+
+                      {/* Company Info */}
+                      <div className={company.thumbnail ? "ml-20" : ""}>
+                        <h2
+                          className="text-3xl font-bold mb-4 text-foreground"
+                          data-aos="fade-up"
+                          data-aos-delay="150"
+                        >
+                          {company.name}
+                        </h2>
+                        <p
+                          className="text-foreground-secondary text-lg leading-relaxed"
+                          data-aos="fade-up"
+                          data-aos-delay="200"
+                        >
+                          {company.detailed_title || company.summary}
+                        </p>
+                      </div>
 
                       {company.long_items && company.long_items.length > 0 && (
                         <ul
@@ -1073,7 +1089,7 @@ export default function Home() {
                         <MdEmail className="text-primary text-xl flex-shrink-0" />
                         <a
                           href={`mailto:${settings?.contact_email}`}
-                          className="text-white hover:underline transition-colors"
+                          className="text-foreground hover:underline transition-colors"
                         >
                           {settings?.contact_email}
                         </a>

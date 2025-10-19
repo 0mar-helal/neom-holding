@@ -10,9 +10,6 @@ const nextConfig = {
     removeConsole: process.env.NODE_ENV === "production",
   },
 
-  // Modern browser targets
-  swcMinify: true,
-
   // Image optimization
   images: {
     formats: ["image/webp", "image/avif"],
@@ -21,6 +18,14 @@ const nextConfig = {
     minimumCacheTTL: 60,
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "neom1dashboard.pythonanywhere.com",
+        port: "",
+        pathname: "/media/companies/**",
+      },
+    ],
   },
 
   // Compression
