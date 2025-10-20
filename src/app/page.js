@@ -36,6 +36,7 @@ export default function Home() {
     news,
     posts,
     pages,
+    investors,
     isSubmittingContact,
     submitContactForm,
   } = useHomeContext();
@@ -202,9 +203,14 @@ export default function Home() {
           "tourism investment",
           "ESG standards",
           "corporate governance",
+          "investor relations",
+          "sustainable investment",
+          "Syria business opportunities",
+          "Middle East investment",
         ]}
         url="/"
         type="website"
+        image="/logo.png"
       />
       <StructuredData />
 
@@ -428,16 +434,19 @@ export default function Home() {
                         data-aos-delay={250 + index * 100}
                       >
                         {speech.photo ? (
-                          <Image
+                          <img
                             src={speech.photo}
-                            alt={speech.speaker_name || "Speaker"}
-                            width={128}
-                            height={128}
+                            alt={`${speech.speaker_name || "Speaker"} - ${
+                              speech.speaker_position || "Board Member"
+                            }`}
+                            // width={128}
+                            // height={128}
                             className="w-full h-full object-cover rounded-2xl"
-                            onError={(e) => {
-                              e.target.style.display = "none";
-                              e.target.nextSibling.style.display = "flex";
-                            }}
+                            priority={index === 0} // Prioritize first speaker image
+                            // onError={(e) => {
+                            //   e.target.style.display = "none";
+                            //   e.target.nextSibling.style.display = "flex";
+                            // }}
                           />
                         ) : null}
                         <div
@@ -678,8 +687,11 @@ export default function Home() {
                         >
                           <img
                             src={company.thumbnail}
-                            alt={company.name}
+                            alt={`${company.name} company logo`}
+                            // width={64}
+                            // height={64}
                             className="w-full h-full object-cover rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
+                            priority={index < 3} // Prioritize first 3 company images
                           />
                         </div>
                       )}
@@ -837,63 +849,64 @@ export default function Home() {
                 >
                   {t("sections.investors.title")}
                 </h2>
-                <div
-                  className="grid grid-cols-1 md:grid-cols-3 gap-6"
-                  data-aos="fade-up"
-                  data-aos-delay="200"
-                >
+
+                {/* Dynamic Investors Content */}
+                {investors && investors.length > 0 ? (
                   <div
-                    className="bg-background-accent border border-border rounded-xl p-6"
-                    data-aos="zoom-in-up"
-                    data-aos-delay="250"
+                    className="space-y-6"
+                    data-aos="fade-up"
+                    data-aos-delay="200"
                   >
-                    <h3 className="text-lg font-bold mb-3 text-foreground">
-                      {t("sections.investors.distributionPolicies.title")}
-                    </h3>
-                    <p className="text-foreground-secondary text-sm">
-                      {t("sections.investors.distributionPolicies.description")}
-                    </p>
-                    <div className="mt-4">
-                      <span className="inline-block bg-background-accent text-foreground-secondary px-3 py-1 rounded text-xs">
-                        {t("sections.investors.comingSoon")}
-                      </span>
-                    </div>
+                    {investors.map((investor, index) => (
+                      <article
+                        key={investor.id || index}
+                        className="bg-background-accent border border-border rounded-xl p-6"
+                        data-aos="zoom-in-up"
+                        data-aos-delay={250 + index * 50}
+                        itemScope
+                        itemType="https://schema.org/Article"
+                      >
+                        <h3
+                          className="text-lg font-bold mb-3 text-foreground"
+                          itemProp="headline"
+                        >
+                          {investor.title}
+                        </h3>
+                        {investor.content_type === "ul" &&
+                          investor.content_items && (
+                            <ul className="text-foreground-secondary text-sm space-y-2">
+                              {investor.content_items.map((item, itemIndex) => (
+                                <li
+                                  key={itemIndex}
+                                  className="flex items-start"
+                                >
+                                  <span className="w-2 h-2 bg-primary rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                                  <span>{item}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          )}
+                        {investor.content_type === "ol" &&
+                          investor.content_items && (
+                            <ol className="text-foreground-secondary text-sm space-y-2 list-decimal list-inside">
+                              {investor.content_items.map((item, itemIndex) => (
+                                <li key={itemIndex}>{item}</li>
+                              ))}
+                            </ol>
+                          )}
+                        {investor.content_type === "p" &&
+                          investor.content_items && (
+                            <div className="text-foreground-secondary text-sm space-y-2">
+                              {investor.content_items.map((item, itemIndex) => (
+                                <p key={itemIndex}>{item}</p>
+                              ))}
+                            </div>
+                          )}
+                      </article>
+                    ))}
                   </div>
-                  <div
-                    className="bg-background-accent border border-border rounded-xl p-6"
-                    data-aos="zoom-in-up"
-                    data-aos-delay="300"
-                  >
-                    <h3 className="text-lg font-bold mb-3 text-foreground">
-                      {t("sections.investors.financialCalendar.title")}
-                    </h3>
-                    <p className="text-foreground-secondary text-sm">
-                      {t("sections.investors.financialCalendar.description")}
-                    </p>
-                    <div className="mt-4">
-                      <span className="inline-block bg-background-accent text-foreground-secondary px-3 py-1 rounded text-xs">
-                        {t("sections.investors.comingSoon")}
-                      </span>
-                    </div>
-                  </div>
-                  <div
-                    className="bg-background-accent border border-border rounded-xl p-6"
-                    data-aos="zoom-in-up"
-                    data-aos-delay="350"
-                  >
-                    <h3 className="text-lg font-bold mb-3 text-foreground">
-                      {t("sections.investors.annualReports.title")}
-                    </h3>
-                    <p className="text-foreground-secondary text-sm">
-                      {t("sections.investors.annualReports.description")}
-                    </p>
-                    <div className="mt-4">
-                      <span className="inline-block bg-background-accent text-foreground-secondary px-3 py-1 rounded text-xs">
-                        {t("sections.investors.comingSoon")}
-                      </span>
-                    </div>
-                  </div>
-                </div>
+                ) : null}
+
                 <div
                   className="mt-6 text-center"
                   data-aos="fade-up"

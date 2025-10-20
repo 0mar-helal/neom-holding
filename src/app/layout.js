@@ -80,7 +80,7 @@ export const metadata = {
     title: "Neom Holding | شركة نيوم القابضة",
     description:
       "A world-class Saudi-Syrian holding company investing in Syria's future.",
-    images: ["/twitter-image.jpg"],
+    images: ["/logo.png"],
     creator: "@neomholding",
   },
   alternates: {
@@ -127,8 +127,7 @@ export default function RootLayout({ children }) {
         <link
           rel="stylesheet"
           href="https://unpkg.com/aos@next/dist/aos.css"
-          media="print"
-          // onLoad="this.media='all'"
+          media="all"
         />
       </head>
       <body

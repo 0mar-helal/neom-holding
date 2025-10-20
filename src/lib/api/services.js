@@ -195,6 +195,13 @@ export const contactService = {
     apiService.post(API_ENDPOINTS.CONTACT, { ...data, lang }),
 };
 
+export const investorsService = {
+  getAll: (lang = "en", ordering = "sort") =>
+    apiService.get(API_ENDPOINTS.INVESTORS, { lang, ordering }),
+  getById: (id, lang = "en") =>
+    apiService.get(`${API_ENDPOINTS.INVESTORS}${id}/`, { lang }),
+};
+
 export const searchService = {
   search: (query, params = {}) =>
     apiService.get(API_ENDPOINTS.SEARCH, { q: query, ...params }),

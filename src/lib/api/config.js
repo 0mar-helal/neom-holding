@@ -19,6 +19,7 @@ export const API_ENDPOINTS = {
   PAGES: "/pages/",
   LEGAL: "/legal/",
   CONTACT: "/contact/",
+  INVESTORS: "/investors/",
   SEARCH: "/search/",
 };
 

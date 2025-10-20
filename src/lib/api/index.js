@@ -27,6 +27,7 @@ export {
   pagesService,
   legalService,
   contactService,
+  investorsService,
   searchService,
 } from "./services";
 
@@ -49,6 +50,7 @@ export {
   usePages,
   useLegal,
   useContact,
+  useInvestors,
   useSearch,
   useDashboardData,
 } from "./hooks";

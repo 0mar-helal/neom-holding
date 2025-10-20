@@ -16,6 +16,7 @@ import {
   pagesService,
   legalService,
   contactService,
+  investorsService,
   searchService,
 } from "./services";
 
@@ -374,6 +375,26 @@ export const useContact = (lang = "en") => {
 
   return {
     contact: data,
+    isLoading,
+    isError: error,
+    mutate,
+  };
+};
+
+// Investors hooks
+export const useInvestors = (lang = "en", ordering = "sort") => {
+  const { data, error, isLoading, mutate } = useSWR(
+    `investors-${lang}-${ordering}`,
+    () => investorsService.getAll(lang, ordering),
+    {
+      revalidateOnFocus: false,
+      revalidateOnReconnect: true,
+      dedupingInterval: 300000, // 5 minutes
+    }
+  );
+
+  return {
+    investors: data,
     isLoading,
     isError: error,
     mutate,

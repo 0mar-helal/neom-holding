@@ -18,6 +18,7 @@ import {
   useNews,
   usePosts,
   usePages,
+  useInvestors,
   contactService,
 } from "@/lib/api";
 import { useAppContext } from "./AppContext";
@@ -103,6 +104,11 @@ export const HomeProvider = ({ children }) => {
     isLoading: pagesLoading,
     isError: pagesError,
   } = usePages(i18n.language);
+  const {
+    investors,
+    isLoading: investorsLoading,
+    isError: investorsError,
+  } = useInvestors(i18n.language);
 
   // Combined loading state for home page
   const isLoading =
@@ -117,7 +123,8 @@ export const HomeProvider = ({ children }) => {
     esgLoading ||
     newsLoading ||
     postsLoading ||
-    pagesLoading;
+    pagesLoading ||
+    investorsLoading;
 
   // Combined error state for home page
   const isError =
@@ -132,7 +139,8 @@ export const HomeProvider = ({ children }) => {
     esgError ||
     newsError ||
     postsError ||
-    pagesError;
+    pagesError ||
+    investorsError;
 
   // Process posts data
   const postsItems = Array.isArray(posts) ? posts : posts?.results || [];
@@ -160,6 +168,14 @@ export const HomeProvider = ({ children }) => {
 
   // Process pages data
   const pagesItems = Array.isArray(pages) ? pages : pages?.results || [];
+
+  // Process investors data
+  const investorsItems = Array.isArray(investors)
+    ? investors
+    : investors?.results || [];
+  const sortedInvestorsItems = investorsItems.sort(
+    (a, b) => (a.sort || 0) - (b.sort || 0)
+  );
 
   // Contact form submission
   const submitContactForm = async (formData) => {
@@ -323,6 +339,7 @@ export const HomeProvider = ({ children }) => {
     news: sortedNewsItems,
     posts: sortedPostsItems,
     pages: pagesItems,
+    investors: sortedInvestorsItems,
 
     // Loading states
     isLoading,
