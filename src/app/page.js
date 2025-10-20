@@ -670,7 +670,9 @@ export default function Home() {
                       {/* Thumbnail Image - Top Left */}
                       {company.thumbnail && (
                         <div
-                          className="absolute top-4 left-4 w-16 h-16 z-10"
+                          className={`absolute top-4 w-16 h-16 z-10 ${
+                            i18n.language === "ar" ? "left-4" : "right-4"
+                          }`}
                           data-aos="fade-right"
                           data-aos-delay="150"
                         >
@@ -683,7 +685,15 @@ export default function Home() {
                       )}
 
                       {/* Company Info */}
-                      <div className={company.thumbnail ? "ml-20" : ""}>
+                      <div
+                        className={
+                          company.thumbnail
+                            ? i18n.language === "ar"
+                              ? "ml-20"
+                              : "mr-20"
+                            : ""
+                        }
+                      >
                         <h2
                           className="text-3xl font-bold mb-4 text-foreground"
                           data-aos="fade-up"
