@@ -13,7 +13,7 @@ export default function AnimatedMenuIcon({
       aria-label={ariaLabel}
       aria-pressed={active}
       tabIndex={0}
-      className={`lg:hidden flex items-center justify-center cursor-pointer select-none ${className}`}
+      className={`xl:hidden flex items-center justify-center cursor-pointer select-none ${className}`}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

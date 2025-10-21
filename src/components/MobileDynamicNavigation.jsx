@@ -52,7 +52,7 @@ const MobileDynamicNavigation = () => {
   ];
 
   return (
-    <div className="lg:hidden relative">
+    <div className="relativ xl:hidden ">
       {/* Mobile menu button */}
       <div className="relative z-[10000000]">
         <AnimatedMenuIcon
